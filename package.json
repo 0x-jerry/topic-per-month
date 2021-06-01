@@ -1,0 +1,8 @@
+{
+  "name": "topic-per-month",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/cwxyz007/topic-per-month.git",
+  "author": "Gem Xli <x.li.gem@gmail.com>",
+  "license": "MIT"
+}
