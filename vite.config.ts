@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import md from 'vite-plugin-md'
 import pages from 'vite-plugin-pages'
 import Prism from 'markdown-it-prism'
+import { VitePluginMenus } from './vite/vite-plugin-menus'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +14,7 @@ export default defineConfig({
     }),
     pages({
       extensions: ['vue', 'md'],
-      pagesDir: 'docs',
+      pagesDir: ['docs', 'src/pages'],
     }),
     md({
       wrapperClasses: 'prose prose-sm m-auto text-left',
@@ -23,5 +24,6 @@ export default defineConfig({
         md.use(Prism)
       },
     }),
+    VitePluginMenus('docs'),
   ],
 })
