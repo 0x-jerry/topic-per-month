@@ -25,7 +25,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: yarn
+      - run: yarn --frozen-lockfile
       - run: yarn build
 
       - name: deploy

@@ -9,6 +9,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
     "types": ["vite/client"]
   },
   "include": ["src", "vite", "vite.config.ts", "components.d.ts"]
