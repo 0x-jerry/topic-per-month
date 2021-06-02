@@ -34,7 +34,7 @@ async function generateCode(dir: string) {
   const files = await fs.readdir(path.resolve(dir))
 
   for (const file of files) {
-    menus.push(file)
+    menus.push(file.split('.').shift())
   }
 
   const src = `

@@ -11,5 +11,5 @@
     "lib": ["esnext", "dom"],
     "types": ["vite/client"]
   },
-  "include": ["src", "vite", "vite.config.ts"]
+  "include": ["src", "vite", "vite.config.ts", "components.d.ts"]
 }
