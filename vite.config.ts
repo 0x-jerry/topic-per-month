@@ -6,6 +6,7 @@ import Prism from 'markdown-it-prism'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/],
