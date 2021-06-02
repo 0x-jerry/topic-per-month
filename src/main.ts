@@ -1,6 +1,8 @@
-import { createApp } from 'vue'
 import App from './App.vue'
-import { router } from './router'
-import { createHead } from '@vueuse/head'
+import { ViteSSG } from 'vite-ssg'
+import routes from 'virtual:generated-pages'
 
-createApp(App).use(createHead()).use(router).mount('#app')
+export const createApp = ViteSSG(App, {
+  base: import.meta.env.BASE_URL,
+  routes,
+})

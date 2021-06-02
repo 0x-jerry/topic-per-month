@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="o in menus">
-      <router-link :to="`/${o}`">
+      <router-link :to="`/docs/${o}`">
         {{ o }}
       </router-link>
     </li>

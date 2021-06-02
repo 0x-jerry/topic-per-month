@@ -8,14 +8,14 @@ import components from 'vite-plugin-components'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/topic-per-month/',
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
     pages({
       extensions: ['vue', 'md'],
-      pagesDir: ['docs', 'src/pages'],
+      pagesDir: ['src/pages'],
     }),
     md({
       wrapperClasses: 'prose prose-sm m-auto text-left',
