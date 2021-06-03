@@ -71,14 +71,75 @@ export const routes = [
 
 ### micro frontend 框架
 
-<!-- todo -->
-
 框架就有很多啦，我选了三个不同的轮子，简单的捋一捋里面的原理。
 
+- luigi: https://github.com/SAP/luigi，利用 iframe 构建的微服务框架
 - emp: https://github.com/efoxTeam/emp，使用 webpack5 的 module federation 技术
 - single-spa: https://github.com/single-spa/single-spa，路由框架
-- luigi: https://github.com/SAP/luigi，专注后台页面的微前端框架
 - qiankun: https://github.com/umijs/qiankun，建立在 single-spa 之上的解决方案
+
+## 微前端框架体验
+
+### Luigi
+
+先看看 [Luigi]，一个利用 `iframe` 构建的后台微服务框架。可看作是一个路由框架，主要用于构建后台配置页面。
+
+通过 [`Luigi.setConfig`](https://docs.luigi-project.io/docs/luigi-core-api?section=luigi-config) API 来配置网站的路由、授权、导航、本地化等。然后 [Luigi] 框架通过 iframe 切换不同的路由。
+
+消息机制也是通过 `window.postMessage` 实现，源代码 [code](https://github.com/SAP/luigi/blob/883c3924cf2ae83fce400cbfd7bf84f8c11359d7/client/src/helpers.js#L111-L119)
+
+```js
+  sendPostMessageToLuigiCore(msg) {
+    if (this.origin) {
+      window.parent.postMessage(msg, this.origin);
+    } else {
+      console.warn(
+        'There is no target origin set. You can specify the target origin by calling LuigiClient.setTargetOrigin("targetorigin") in your micro frontend.'
+      );
+    }
+  }
+```
+
+路由也是通过封装的 `LuigiClient.linkManager`、`Luigi.navigation` 来管理跳转，实际原理也是通过发送消息来实现的，源代码 [code](https://github.com/SAP/luigi/blob/883c3924cf2ae83fce400cbfd7bf84f8c11359d7/client/src/linkManager.js#L56-L83)
+
+```js
+  navigate(path, sessionId, preserveView, modalSettings, splitViewSettings, drawerSettings) {
+    if (this.options.errorSkipNavigation) {
+      this.options.errorSkipNavigation = false;
+      return;
+    }
+    if (modalSettings && splitViewSettings && drawerSettings) {
+      console.warn(
+        'modalSettings, splitViewSettings and drawerSettings cannot be used together. Only modal setting will be taken into account.'
+      );
+    }
+
+    this.options.preserveView = preserveView;
+    const relativePath = path[0] !== '/';
+    const hasIntent = path.toLowerCase().includes('?intent=');
+    const navigationOpenMsg = {
+      msg: 'luigi.navigation.open',
+      sessionId: sessionId,
+      params: Object.assign(this.options, {
+        link: path,
+        relative: relativePath,
+        intent: hasIntent,
+        modal: modalSettings,
+        splitView: splitViewSettings,
+        drawer: drawerSettings
+      })
+    };
+    helpers.sendPostMessageToLuigiCore(navigationOpenMsg);
+  }
+```
+
+其它，如生命周期等，也是类似通过发送消息的方式来实现的。
+
+整体体验下来，不是特别方便，代码有一定的侵入性。由于 iframe 的特性，每次切换，都要请求一下资源，略慢。
+
+[Luigi] 体验的差不多了，下一个 [emp]
+
+### EMP
 
 ## 微前端需要解决的问题
 
@@ -104,3 +165,7 @@ export const routes = [
 [web-component]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
 [qiankun-技术圆桌]: https://www.yuque.com/kuitos/gky7yw/rhduwc
 [webpack-module-federation]: https://webpack.js.org/concepts/module-federation/
+[luigi]: https://github.com/SAP/luigi
+[emp]: https://github.com/efoxTeam/emp
+[single-spa]: https://github.com/single-spa/single-spa
+[qiankun]: https://github.com/umijs/qiankun
