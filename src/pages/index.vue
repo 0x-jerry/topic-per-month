@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="o in menus">
+    <li v-for="o in conf.menus">
       <router-link :to="`/docs/${o}`">
         {{ o }}
       </router-link>
@@ -9,5 +9,5 @@
 </template>
 
 <script setup lang="ts">
-import menus from 'virtual:menus'
+import conf from 'virtual:site'
 </script>
