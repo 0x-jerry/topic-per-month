@@ -71,12 +71,14 @@ export const routes = [
 
 ### micro frontend 框架
 
-框架就多了去了，我选了实现有区别的轮子，简单的介绍介绍。
+<!-- todo -->
 
-- amp: https://amp.dev/ , web component
-- emp: https://github.com/efoxTeam/emp , webpack5 - module federation
-- single-spa: https://github.com/single-spa/single-spa ,
-- qiankun: https://github.com/umijs/qiankun , build top on single-spa
+框架就有很多啦，我选了三个不同的轮子，简单的捋一捋里面的原理。
+
+- emp: https://github.com/efoxTeam/emp，使用 webpack5 的 module federation 技术
+- single-spa: https://github.com/single-spa/single-spa，路由框架
+- luigi: https://github.com/SAP/luigi，专注后台页面的微前端框架
+- qiankun: https://github.com/umijs/qiankun，建立在 single-spa 之上的解决方案
 
 ## 微前端需要解决的问题
 
@@ -85,17 +87,17 @@ export const routes = [
 3. 样式隔离问题
 4. 通信问题
 
-缺点：
+## 需要微前端吗？
 
-1.
+现在，对微前端有了一个整体的认识，我们真的需要微前端吗？
+
+这一点，说点软文吧，不管怎么样，还是要结合业务和实际情况认真考虑「微前端」带来的优势是否足够大。
 
 ## 推荐阅读
 
 - [micro-frontends]，一篇对「微前端」简单介绍的文章
-- [martinfowler-micro-frontends]，分析「微前端」的优劣势，以及实践和细节处理方案
+- [martinfowler-micro-frontends]，分析「微前端」的优劣势，和一些实现方案以及细节处理方式
 - [qiankun-技术圆桌]，探讨「微前端」的目的，使命
-
-## 需要微前端吗？
 
 [micro-frontends]: https://micro-frontends.org/
 [martinfowler-micro-frontends]: https://martinfowler.com/articles/micro-frontends.html
