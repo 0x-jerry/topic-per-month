@@ -97,7 +97,7 @@ export const routes = [
 
 ## 需要微前端吗？
 
-[micro-frontend]: https://micro-frontends.org/
+[micro-frontends]: https://micro-frontends.org/
 [martinfowler-micro-frontends]: https://martinfowler.com/articles/micro-frontends.html
 [web-component]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
 [qiankun-技术圆桌]: https://www.yuque.com/kuitos/gky7yw/rhduwc
