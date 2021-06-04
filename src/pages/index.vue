@@ -17,4 +17,7 @@
 import conf from 'virtual:site'
 
 const isDev = import.meta.env.DEV
+if (isDev) {
+  console.log('site config', conf)
+}
 </script>

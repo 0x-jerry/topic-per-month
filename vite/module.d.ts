@@ -17,13 +17,13 @@ declare module 'virtual:site' {
      */
     routePath: string
     /**
-     * @default created date of the file
+     * created date of the file, unit is ms
      */
-    date: Date
+    date: number
     /**
-     * @default last modified of the file
+     * last modified of the file, unit is ms
      */
-    lastUpdateDate: Date
+    lastUpdateDate: number
     /**
      * @default []
      */
