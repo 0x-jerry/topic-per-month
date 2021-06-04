@@ -1,5 +1,11 @@
 <template>
   <router-view />
+  <go-top />
 </template>
 
-<style></style>
+<style>
+html,
+body {
+  @apply font-sans;
+}
+</style>
