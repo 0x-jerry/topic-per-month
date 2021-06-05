@@ -76,10 +76,10 @@ export const routes = [
 
 框架就有很多啦，我选了三个不同的轮子，简单的捋一捋里面的原理。
 
-- luigi: https://github.com/SAP/luigi，利用 iframe 构建的微服务框架
-- emp: https://github.com/efoxTeam/emp，使用 webpack5 的 module federation 技术
-- single-spa: https://github.com/single-spa/single-spa，路由框架
-- qiankun: https://github.com/umijs/qiankun，建立在 single-spa 之上的解决方案
+- luigi: https://github.com/SAP/luigi ，利用 iframe 构建的微服务框架
+- emp: https://github.com/efoxTeam/emp ，使用 webpack5 的 module federation 技术
+- single-spa: https://github.com/single-spa/single-spa ，路由框架
+- qiankun: https://github.com/umijs/qiankun ，建立在 single-spa 之上的解决方案
 
 ## 微前端框架体验
 

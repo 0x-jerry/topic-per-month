@@ -71,7 +71,6 @@ onMounted(() => {
 
 function updateTocActive() {
   const links: NodeListOf<HTMLLinkElement> = document.querySelectorAll('.table-of-contents li a')
-  const lis = document.querySelectorAll('.table-of-contents li')
 
   const linksTop = Array.from(links).map((link) => {
     const url = new URL(link?.href || '')
@@ -88,55 +87,75 @@ function updateTocActive() {
 
   const tIdx = idx < 0 ? 0 : idx
 
-  lis.forEach((li) => li.classList.remove('active'))
-  lis.item(tIdx)?.classList.add('active')
+  links.forEach((li) => li.classList.remove('active'))
+  links.item(tIdx)?.classList.add('active')
 }
 
 watch(() => scrollPos.y.value, updateTocActive)
 </script>
 
-<style>
+<style lang="less">
 .table-of-contents {
   width: 230px;
   height: 70vh;
   overflow: auto;
 
   @apply fixed top-24 right-10 bg-white;
-}
-.table-of-contents::before {
-  content: ' ';
-  position: absolute;
-  width: 1px;
-  height: 100%;
-  left: 0px;
-  @apply border-l border-gray-500;
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    left: 0px;
+    @apply border-l border-gray-500;
+  }
+
+  & li a {
+    color: inherit;
+    @apply block pl-3;
+
+    @apply text-gray-500;
+
+    &:hover,
+    &.active {
+      @apply text-gray-900;
+
+      &::before {
+        content: ' ';
+        position: absolute;
+        width: 1px;
+        height: 18px;
+        left: 0px;
+
+        @apply border-l border-gray-900;
+      }
+    }
+  }
+
+  & ul ul li {
+    @apply pl-5;
+  }
 }
 
-.table-of-contents ul li {
-  @apply pl-3;
-}
-.table-of-contents ul li a {
-  @apply block;
-}
+.markdown-body {
+  blockquote {
+    padding: 16px 40px;
+    margin: 0;
+    box-sizing: border-box;
 
-.table-of-contents ul ul li {
-  @apply pl-5;
-}
+    @apply bg-light-700 relative;
 
-.table-of-contents li {
-  @apply text-gray-500 hover:text-gray-900;
-}
-.table-of-contents li.active {
-  @apply text-gray-900;
-}
+    &::before {
+      width: 8px;
+      content: '';
 
-.table-of-contents li.active::before {
-  content: ' ';
-  position: absolute;
-  width: 1px;
-  height: 18px;
-  left: 0px;
+      @apply absolute left-0 top-0 h-full bg-gray-500;
+    }
+  }
 
-  @apply border-l border-gray-800;
+  a {
+    @apply text-blue-500 hover:text-blue-600;
+  }
 }
 </style>
