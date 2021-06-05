@@ -10,6 +10,7 @@
     "@vueuse/core": "^4.11.2",
     "@vueuse/head": "^0.5.1",
     "normalize.css": "^8.0.1",
+    "prismjs": "^1.23.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.8"
   },

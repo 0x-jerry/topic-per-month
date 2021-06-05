@@ -1,3 +1,7 @@
 {
-  "recommendations": ["hediet.vscode-drawio"]
+  "recommendations": [
+    "hediet.vscode-drawio",
+    "johnsoncodehk.volar",
+    "voorjaar.windicss-intellisense"
+  ]
 }
