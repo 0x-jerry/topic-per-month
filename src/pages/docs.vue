@@ -108,7 +108,7 @@ watch(() => scrollPos.y.value, updateTocActive)
     width: 1px;
     height: 100%;
     left: 0px;
-    @apply border-l border-gray-500;
+    @apply border-l border-gray-200;
   }
 
   & li a {
