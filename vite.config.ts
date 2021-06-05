@@ -39,7 +39,7 @@ export default defineConfig({
         shortcuts: {
           card: 'shadow shadow-gray-500',
           'card-lg': 'shadow shadow-gray-500 shadow-lg',
-          'fixed-top': 'fixed top-0 left-0 w-full',
+          'fixed-top': 'fixed top-0 left-0 w-full z-50',
           link: 'text-gray-400 hover:text-gray-600 cursor-pointer',
         },
       },
