@@ -144,12 +144,27 @@ export const routes = [
 
 ### EMP
 
+通过官方仓库 [emp]，中`projects` 里面的示例，体验了一下。
+
+整体体验下来，比较流畅。
+
+主要原理是通过 [webpack5] 的 [module-federation](https://webpack.js.org/concepts/module-federation/) 来加载远程模块。
+
+因此高度依赖 [webpack5]，对于其它打包工具,目前还不能很好的兼容。如果仅仅是当做路由框架，也是可行的。
+
+因为直接暴露模块，因此没有通信和生命周期的的问题。但是样式隔离问题依旧存在，全局变量污染问题也存在。
+
+下一个 [single-spa]
+
+## single-spa
+
 ## 微前端需要解决的问题
 
 1. 服务更新问题
 2. 版本问题
 3. 样式隔离问题
 4. 通信问题
+5. 环境隔离问题
 
 ## 需要微前端吗？
 
@@ -172,3 +187,4 @@ export const routes = [
 [emp]: https://github.com/efoxTeam/emp
 [single-spa]: https://github.com/single-spa/single-spa
 [qiankun]: https://github.com/umijs/qiankun
+[webpack5]: https://webpack.js.org/
