@@ -154,8 +154,12 @@ watch(() => scrollPos.y.value, updateTocActive)
     }
   }
 
-  a {
+  p a {
     @apply text-blue-500 hover:text-blue-600;
+
+    code {
+      color: inherit;
+    }
   }
 
   p code {
