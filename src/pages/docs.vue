@@ -157,5 +157,9 @@ watch(() => scrollPos.y.value, updateTocActive)
   a {
     @apply text-blue-500 hover:text-blue-600;
   }
+
+  p code {
+    @apply text-red-600 px-2 py-1 bg-gray-100 rounded-sm;
+  }
 }
 </style>
