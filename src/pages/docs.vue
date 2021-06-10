@@ -159,7 +159,7 @@ watch(() => scrollPos.y.value, updateTocActive)
   }
 
   p code {
-    @apply text-red-600 px-2 py-1 bg-gray-100 rounded-sm;
+    @apply text-red-600 px-2 py-1 bg-gray-100 rounded-sm font-mono;
   }
 }
 </style>
