@@ -76,10 +76,10 @@ export const routes = [
 
 框架就有很多啦，我选了三个不同的轮子，简单的捋一捋里面的原理。
 
-- luigi: https://github.com/SAP/luigi ，利用 iframe 构建的微服务框架
-- emp: https://github.com/efoxTeam/emp ，使用 webpack5 的 module federation 技术
-- single-spa: https://github.com/single-spa/single-spa ，路由框架
-- qiankun: https://github.com/umijs/qiankun ，建立在 single-spa 之上的解决方案
+- Luigi: https://github.com/SAP/luigi ，利用 iframe 构建的微服务框架
+- EMP: https://github.com/efoxTeam/emp ，使用 webpack5 的 module federation 技术
+- Single-SPA: https://github.com/Single-SPA/Single-SPA ，路由框架
+- qiankun: https://github.com/umijs/qiankun ，建立在 Single-SPA 之上的解决方案
 
 ## 微前端框架体验
 
@@ -140,13 +140,13 @@ export const routes = [
 
 整体体验下来，不是特别方便，代码有一定的侵入性。由于 iframe 的特性，每次切换，都要请求一下资源，略慢。
 
-[Luigi] 体验的差不多了，下一个 [emp]
+[Luigi] 体验的差不多了，下一个 [EMP]
 
 ### EMP
 
-通过官方仓库 [emp]，中`projects` 里面的示例，体验了一下。
+通过官方仓库 [EMP]，中`projects` 里面的示例，体验了一下。
 
-整体体验下来，比较流畅。
+整体体验下来，开发比较流畅，但是文档目前不太完善。
 
 主要原理是通过 [webpack5] 的 [module-federation](https://webpack.js.org/concepts/module-federation/) 来加载远程模块。
 
@@ -154,17 +154,63 @@ export const routes = [
 
 因为直接暴露模块，因此没有通信和生命周期的的问题。但是样式隔离问题依旧存在，全局变量污染问题也存在。
 
-下一个 [single-spa]
+下一个 [Single-SPA]
 
-## single-spa
+### Single-SPA
+
+粗略体验，文档完善，社区也很活跃。而且有 [SSR](https://single-spa.js.org/docs/ssr-overview) 方案。
+
+[Single-SPA] 整个文档，都在强调 [Single-SPA] 是一种思路，具体实现方案，可自行选择。例如 [qiankun] 和 [EMP] 都可看作其一种具体的实现方案。
+
+[Single-SPA] 建议用加载 运行时模块(runtime module) 的方式，来组织「微前端」中不同的服务，例如用，尚在提案阶段的 [import-maps](https://github.com/WICG/import-maps)，[import-maps 兼容性](https://caniuse.com/import-maps) 或者 [webpack-module-federation] 功能。
+
+官方会在处理「微前端」相关问题时，都会推荐一种实现方案，具体方案建议阅读 [Single-SPA] 文档。
+
+下一个 [QianKun]，一个 [Single-SPA] 的具体实现方案。
+
+### QianKun
+
+关于状态共享，[QianKun] 实现了一个 [Global State](https://qiankun.umijs.org/api#initglobalstatestate) 方案，推荐阅读。
+
+乾坤用的是 [import-html-entry] 的方式。
 
 ## 微前端需要解决的问题
 
 1. 服务更新问题
-2. 版本问题
+2. 通信问题
 3. 样式隔离问题
-4. 通信问题
-5. 环境隔离问题
+4. 环境隔离问题
+5. 如何分离团队和开发
+
+### 服务更新问题
+
+关于更新的问题，进一步的问题可以提炼成：关于「微前端」中的不同服务，是否需要主应用来控制版本呢？
+
+我认为这个答案是否定的，不需要主应用来控制里面服务的版本，也就是主应用里面的服务，无论什么时候都是最新的版本，主应用不关心里面的服务的版本。
+
+由此，也可确定，服务之间，应该尽可能的减少通信。因为频繁的通信，即可导致耦合较大，就必须要有版本控制，否则，出问题的概率就比较大。
+
+### 通信问题
+
+有上一个问题的讨论结果，可得出，通信功能只要满足能用即可。并不要实现特别复杂的机制。
+
+由不同「微前端」方案，也衍生出不同的通信方案：
+
+1. [Luigi] 用到的 `window.postMessage`
+2. [Single-SPA] 提到的 `window.addEventListener/dispatchEvent` [source](https://single-spa.js.org/docs/recommended-setup/#ui-state)
+3. [EMP] 中自定义的模块，则可直接暴露函数
+
+### 样式隔离问题
+
+推荐阅读 [Single-SPA-CSS]，样式隔离的一些指导和分析。
+
+[Single-SPA-CSS] 推荐 一份公用的样式，然后每个服务的样式，都自己去借助工具或者一些技术做到自我隔离。例如 [css-module](https://github.com/css-modules/css-modules) 技术，或者 `Vue` 的 `scoped` 方案。
+
+但如果使用像 [Luigi] 这样利用 `iframe` 的框架，则天然支持样式隔离。
+
+### 环境隔离问题
+
+### 如何分离团队和开发
 
 ## 需要微前端吗？
 
@@ -174,9 +220,11 @@ export const routes = [
 
 ## 推荐阅读
 
-- [micro-frontends]，一篇对「微前端」简单介绍的文章
-- [martinfowler-micro-frontends]，分析「微前端」的优劣势，和一些实现方案以及细节处理方式
-- [qiankun-技术圆桌]，探讨「微前端」的目的，使命
+- [micro-frontends]，一篇对「微前端」简单介绍的文章。
+- [martinfowler-micro-frontends]，分析「微前端」的优劣势，和一些实现方案以及细节处理方式。
+- [qiankun-技术圆桌]，探讨「微前端」的目的，使命。
+- [Single-SPA Concept](https://single-spa.js.org/docs/microfrontends-concept)，「微前端」概念介绍，以及开发方向指导。
+- [Single-SPA Recommended-setup](https://single-spa.js.org/docs/recommended-setup)，「微前端」推荐实现方案。
 
 [micro-frontends]: https://micro-frontends.org/
 [martinfowler-micro-frontends]: https://martinfowler.com/articles/micro-frontends.html
@@ -188,3 +236,5 @@ export const routes = [
 [single-spa]: https://github.com/single-spa/single-spa
 [qiankun]: https://github.com/umijs/qiankun
 [webpack5]: https://webpack.js.org/
+[single-spa-css]: https://single-spa.js.org/docs/ecosystem-css
+[import-html-entry]: https://github.com/kuitos/import-html-entry
