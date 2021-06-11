@@ -154,15 +154,15 @@ watch(() => scrollPos.y.value, updateTocActive)
     }
   }
 
-  p a {
+  a {
     @apply text-blue-500 hover:text-blue-600;
 
     code {
-      color: inherit;
+      color: inherit !important;
     }
   }
 
-  p code {
+  :not(pre) code {
     @apply text-red-600 px-2 py-1 bg-gray-100 rounded-sm font-mono;
   }
 }
