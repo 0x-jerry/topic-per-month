@@ -1,19 +1,12 @@
 <template>
-  <header class="py-3 px-10 transition-shadow flex bg-white fixed-top" :class="shadowClass">
+  <v-header>
     <div class="flex-1 flex">
-      <h1 class="text-4xl">
-        {{ article?.title }}
-      </h1>
+      <v-logo />
     </div>
     <div class="flex-0 flex items-center">
-      <router-link
-        to="/"
-        class="flex bg-light-600 rounded text-3xl hover:bg-light-400 text-gray-600"
-      >
-        <i-ic-baseline-arrow-back />
-      </router-link>
+      <h1 class="text-4xl">{{ article?.title }}</h1>
     </div>
-  </header>
+  </v-header>
   <div class="pl-10 pr-70 pb-10 mt-20">
     <router-view />
   </div>
@@ -32,9 +25,7 @@ const article = computed(() => {
   return conf.articles.find((a) => a.routePath === routePath)
 })
 
-import { useInteractiveShadow } from '../hooks'
 import { useWindowScroll } from '@vueuse/core'
-const shadowClass = useInteractiveShadow()
 const scrollPos = useWindowScroll()
 
 // respect toc
