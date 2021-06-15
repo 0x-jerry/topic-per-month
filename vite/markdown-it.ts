@@ -4,21 +4,8 @@ import anchor from 'markdown-it-anchor'
 import emoji from 'markdown-it-emoji'
 // @ts-ignore
 import toc from 'markdown-it-table-of-contents'
-
-export function setupMarkdownIt(md: MarkdownIt) {
-  md.use(prism)
-    .use(emoji)
-    .use(anchor, {
-      permalinkSymbol: '#',
-    })
-    .use(toc, {
-      includeLevel: [2, 3],
-    })
-    .use(linkPlugin, {
-      target: '_blank',
-      rel: 'noopener noreferrer',
-    })
-}
+// @ts-ignore
+import highlightLines from 'markdown-it-highlight-lines'
 
 // modified based on https://github1s.com/vuejs/vitepress/blob/HEAD/src/node/markdown/plugins/link.ts
 // markdown-it plugin for:
@@ -28,7 +15,7 @@ import { URL } from 'url'
 
 const indexRE = /(^|.*\/)index.md(#?.*)$/i
 
-export const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>) => {
+const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>) => {
   md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     const hrefIndex = token.attrIndex('href')
@@ -78,4 +65,20 @@ export const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>
     // markdown-it encodes the uri
     hrefAttr[1] = decodeURI(url)
   }
+}
+
+export function setupMarkdownIt(md: MarkdownIt) {
+  md.use(prism)
+    .use(emoji)
+    .use(anchor, {
+      permalinkSymbol: '#'
+    })
+    .use(toc, {
+      includeLevel: [2, 3]
+    })
+    .use(highlightLines)
+    .use(linkPlugin, {
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    })
 }

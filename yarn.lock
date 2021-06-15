@@ -2341,6 +2341,11 @@ markdown-it-emoji@^2.0.0:
   resolved "https://registry.npmjs.org/markdown-it-emoji/-/markdown-it-emoji-2.0.0.tgz#3164ad4c009efd946e98274f7562ad611089a231"
   integrity sha512-39j7/9vP/CPCKbEI44oV8yoPJTpvfeReTn/COgRhSpNrjWF3PfP/JUxxB0hxV6ynOY8KH8Y8aX9NMDdo6z+6YQ==
 
+markdown-it-highlight-lines@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.nlark.com/markdown-it-highlight-lines/download/markdown-it-highlight-lines-1.0.2.tgz#33ecf51cd9d9e741cd86f583cb95b67de81fc9c7"
+  integrity sha1-M+z1HNnZ50HNhvWDy5W2fegfycc=
+
 markdown-it-prism@^2.1.6:
   version "2.1.6"
   resolved "https://registry.npmjs.org/markdown-it-prism/-/markdown-it-prism-2.1.6.tgz#ad47e8f66246183df46ac9bd55812901d607aab0"
