@@ -32,8 +32,8 @@ const { A1 } = window._A
 export const routes = [
   {
     path: '/a-1',
-    component: A,
-  },
+    component: A
+  }
 ]
 ```
 
@@ -82,6 +82,8 @@ export const routes = [
 - qiankun: https://github.com/umijs/qiankun ，建立在 Single-SPA 之上的解决方案
 
 ## 微前端框架体验
+
+简单的写写每个框架的处理方式，不一定全对，但一定不会全错 :)。
 
 ### Luigi
 
@@ -210,7 +212,35 @@ export const routes = [
 
 ### 环境隔离问题
 
+环境隔离，主要问题是全局环境变量的问题。要处理这个问题，第一个想到的肯定就是，人工约定一个格式，先到先得。这种方式够用，但不够友好。
+
+如果是 `iframe`，则没有这个问题。
+
+看 [QianKun] 的源代码的时候，看到其用到了 `Sandbox` 这个东西。仔细读了读，实际上是通过 [import-html-entry] 的 [getExecutableScript](https://github.com/kuitos/import-html-entry/blob/ab3e788ee868177ecf407f79b00d52ca2e2cdd47/src/index.js#L52-L63) 实现的。
+
+```js {11}
+function getExecutableScript(scriptSrc, scriptText, proxy, strictGlobal) {
+  const sourceUrl = isInlineCode(scriptSrc) ? '' : `//# sourceURL=${scriptSrc}\n`
+
+  // 通过这种方式获取全局 window，因为 script 也是在全局作用域下运行的，所以我们通过 window.proxy 绑定时也必须确保绑定到全局 window 上
+  // 否则在嵌套场景下， window.proxy 设置的是内层应用的 window，而代码其实是在全局作用域运行的，会导致闭包里的 window.proxy 取的是最外层的微应用的 proxy
+  const globalWindow = (0, eval)('window')
+  globalWindow.proxy = proxy
+  // TODO 通过 strictGlobal 方式切换 with 闭包，待 with 方式坑趟平后再合并
+  return strictGlobal
+    ? `;(function(window, self, globalThis){with(window){;${scriptText}\n${sourceUrl}}}).bind(window.proxy)(window.proxy, window.proxy, window.proxy);`
+    : `;(function(window, self, globalThis){;${scriptText}\n${sourceUrl}}).bind(window.proxy)(window.proxy, window.proxy, window.proxy);`
+}
+```
+
+核心代码，就是 `;(function(window, self, globalThis){;${scriptText}\n${sourceUrl}}).bind(window.proxy)(window.proxy, window.proxy, window.proxy)` 这一句了。在运行代码的时候，通过闭包机制，替换 `window,self,globalThis` 三个变量。
+
+我个人认为，这个方面就看情况了，如果开箱支持，那就用。如果不支持，那也没有必要非得用这种方式，就「约定」的方式也挺好的，
+也没什么大问题。
+
 ### 如何分离团队和开发
+
+这个问题，想想都觉得不简单。我也只有吹吹自己的想法了。毕竟没有机会实践。
 
 ## 需要微前端吗？
 
