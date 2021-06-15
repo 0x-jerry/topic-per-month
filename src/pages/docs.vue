@@ -86,7 +86,114 @@ watch(() => scrollPos.y.value, updateTocActive)
 </script>
 
 <style lang="less">
-.table-of-contents {
+.markdown-body {
+  @apply font-sans;
+
+  blockquote {
+    padding: 16px 40px;
+    margin: 2em 0;
+    box-sizing: border-box;
+
+    @apply bg-light-700 relative;
+
+    &::before {
+      width: 8px;
+      content: '';
+
+      @apply absolute left-0 top-0 h-full bg-gray-500;
+    }
+  }
+
+  a {
+    @apply text-blue-500 hover:text-blue-600;
+
+    code {
+      color: inherit !important;
+    }
+  }
+
+  code {
+    @apply font-mono;
+  }
+
+  :not(pre) code {
+    @apply text-red-600 px-2 py-1 bg-gray-100 rounded-sm;
+  }
+
+  p {
+    line-height: 2.2em;
+    margin: 1.3em 0;
+  }
+
+  h1 {
+    @apply text-4xl;
+    margin: 2em 0;
+  }
+
+  h2 {
+    @apply text-3xl;
+    margin: 1em 0;
+  }
+
+  h3 {
+    @apply text-2xl;
+    margin: 1em 0;
+  }
+
+  h4 {
+    @apply text-1xl;
+    margin: 1em 0;
+  }
+
+  h5,
+  h6 {
+    margin: 1em 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @offset: 0.8em;
+    position: relative;
+    left: @offset;
+
+    &::before {
+      content: '#';
+      position: absolute;
+      top: 0;
+      left: -@offset;
+      @apply text-blue-500;
+    }
+
+    // &:hover {
+    //   &::before {
+    //     @apply text-blue-500;
+    //   }
+    // }
+  }
+
+  ol,
+  ul {
+    padding-left: 1em;
+
+    li {
+      margin: 0.5em 0;
+    }
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  ul {
+    list-style: circle;
+  }
+}
+
+.markdown-body .table-of-contents {
   width: 230px;
   height: 70vh;
   overflow: auto;
@@ -100,6 +207,11 @@ watch(() => scrollPos.y.value, updateTocActive)
     height: 100%;
     left: 0px;
     @apply border-l border-gray-200;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
   }
 
   & li a {
@@ -126,35 +238,6 @@ watch(() => scrollPos.y.value, updateTocActive)
 
   & ul ul li {
     @apply pl-5;
-  }
-}
-
-.markdown-body {
-  blockquote {
-    padding: 16px 40px;
-    margin: 0;
-    box-sizing: border-box;
-
-    @apply bg-light-700 relative;
-
-    &::before {
-      width: 8px;
-      content: '';
-
-      @apply absolute left-0 top-0 h-full bg-gray-500;
-    }
-  }
-
-  a {
-    @apply text-blue-500 hover:text-blue-600;
-
-    code {
-      color: inherit !important;
-    }
-  }
-
-  :not(pre) code {
-    @apply text-red-600 px-2 py-1 bg-gray-100 rounded-sm font-mono;
   }
 }
 </style>
