@@ -7,5 +7,7 @@
 html,
 body {
   @apply font-sans;
+
+  scroll-behavior: smooth;
 }
 </style>
