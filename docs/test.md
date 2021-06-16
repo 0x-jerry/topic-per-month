@@ -9,9 +9,9 @@ visible: false
 console.log('hello world')
 ```
 
-;;; template v-slot:header
+;;; template #header="data"
 
-测试 命名 slot
+测试 count: {{data.count}} 命名 slot
 
 ;;;
 
