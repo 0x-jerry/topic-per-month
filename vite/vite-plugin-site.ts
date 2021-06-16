@@ -101,22 +101,20 @@ export default data;
 }
 
 import matter from 'gray-matter'
+import glob from 'fast-glob'
 import { ArticleInfo, SiteConfig } from 'virtual:site'
 
 async function getSiteConfig(dir: string, isDev: boolean) {
   const articles: ArticleInfo[] = []
+  const cwd = path.resolve(dir)
 
-  const files = await fs.readdir(path.resolve(dir))
+  const files = await glob('**/*.md', { cwd })
 
   const allPromise = files.map(async (file) => {
-    let filePath = path.join(dir, file)
-    const stat = await fs.stat(filePath)
-
-    if (stat.isDirectory()) {
-      filePath = path.join(filePath, 'index.md')
-    }
+    const filePath = path.join(cwd, file)
 
     const d = await getArticleConfig(filePath)
+    d.routePath = file.replace(/\.md$/, '')
 
     if (d.visible || isDev) {
       articles.push(d)
@@ -141,13 +139,11 @@ async function getArticleConfig(filePath: string) {
 
   const c = matter(content)
 
-  const routePath = parsedPath.name === 'index' ? path.parse(parsedPath.dir).name : parsedPath.name
-
   const articleInfo: ArticleInfo = {
     publish: true,
     visible: true,
     title: parsedPath.name,
-    routePath: routePath,
+    routePath: '',
     date: stat.birthtimeMs,
     lastUpdateDate: stat.mtimeMs,
     tags: [],
