@@ -13,57 +13,57 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import conf from 'virtual:site'
-import { computed, onMounted, watch } from '@vue/runtime-core'
+import { computed, onMounted, onUpdated, watch } from '@vue/runtime-core'
+import { useWindowScroll } from '@vueuse/core'
+import { scrollToAnchor } from '../utils'
 
-const r = useRoute()
+const route = useRoute()
 
 const article = computed(() => {
-  const routePath = r.path.split('/').pop()
+  const routePath = route.path.split('/').pop()
 
-  return conf.articles.find(a => a.routePath === routePath)
+  return conf.articles.find((a) => a.routePath === routePath)
 })
 
-import { useWindowScroll } from '@vueuse/core'
 const scrollPos = useWindowScroll()
 
-// respect toc
 onMounted(() => {
-  updateTocActive()
-  const toc = document.querySelector('.table-of-contents')
-  if (!toc) {
-    return
-  }
+  initTocLinks()
+})
 
+onUpdated(() => {
+  initTocLinks()
+})
+
+const router = useRouter()
+
+function initTocLinks() {
+  updateTocActive()
+
+  const toc = document.querySelector('.table-of-contents')
+  if (!toc) return
   const lis = toc.querySelectorAll('li')
 
-  lis?.forEach(li => {
+  lis?.forEach((li) => {
     li.setAttribute('title', li.querySelector('a')?.innerText || '')
     const a = li.querySelector('a')
-    const url = new URL(a?.href || '')
-    const hTarget = document.getElementById(url.hash.slice(1))
+    if (!a) {
+      return
+    }
 
-    a?.addEventListener('click', e => {
+    a.onclick = (e) => {
       e.preventDefault()
-
-      const top = hTarget?.offsetTop
-      if (!top) {
-        return
-      }
-
-      window.scrollTo({
-        top: top - 85,
-        behavior: 'smooth',
-      })
-    })
+      scrollToAnchor(a.href, router)
+    }
   })
-})
+}
 
 function updateTocActive() {
   const links: NodeListOf<HTMLLinkElement> = document.querySelectorAll('.table-of-contents li a')
 
-  const linksTop = Array.from(links).map(link => {
+  const linksTop = Array.from(links).map((link) => {
     const url = new URL(link?.href || '')
     const hTarget = document.getElementById(url.hash.slice(1))
     const top = hTarget?.offsetTop || 0
@@ -74,11 +74,11 @@ function updateTocActive() {
     }
   })
 
-  const idx = linksTop.findIndex(l => l.top - 100 > scrollPos.y.value) - 1
+  const idx = linksTop.findIndex((l) => l.top - 100 > scrollPos.y.value) - 1
 
   const tIdx = idx < 0 ? 0 : idx
 
-  links.forEach(li => li.classList.remove('active'))
+  links.forEach((li) => li.classList.remove('active'))
   links.item(tIdx)?.classList.add('active')
 }
 

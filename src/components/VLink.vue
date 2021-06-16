@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { reactive } from '@vue/reactivity'
-import { defineProps } from 'vue'
+import { defineProps, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
+import { scrollToAnchor } from '../utils'
 
 const props = defineProps({
   href: {
@@ -11,24 +13,34 @@ const props = defineProps({
 
 const data = reactive({
   isRelative: false,
+  isAnchor: false,
 })
 
-try {
-  new URL(props.href)
-} catch {
-  data.isRelative = true
+watchEffect(() => {
+  data.isRelative = !/^https?/.test(props.href)
+  data.isAnchor = props.href.startsWith('#')
+})
+
+const router = useRouter()
+
+function scrollToAnchorEvent(e: MouseEvent) {
+  e.preventDefault()
+  scrollToAnchor(props.href, router)
 }
 </script>
 
 <template>
-  <div class="link">
-    <router-link v-if="data.isRelative" :to="props.href">
+  <span class="link">
+    <a v-if="data.isAnchor" :href="props.href" @click="scrollToAnchorEvent">
+      <slot />
+    </a>
+    <router-link v-else-if="data.isRelative" :to="props.href">
       <slot />
     </router-link>
     <a v-else :href="props.href" target="_blank">
       <slot />
     </a>
-  </div>
+  </span>
 </template>
 
 <style lang="less" scoped>

@@ -7,10 +7,15 @@ import MarkdownIt from 'markdown-it'
 
 const indexRE = /(^|.*\/)index.md(#?.*)$/i
 
+// use vue component instead of `a`
+const renderTag = 'v-link'
+
 export const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>) => {
   md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     const hrefIndex = token.attrIndex('href')
+    token.tag = renderTag
+
     if (hrefIndex >= 0) {
       const hrefAttr = token.attrs![hrefIndex]
       const url = hrefAttr[1]
@@ -28,6 +33,13 @@ export const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>
         normalizeHref(hrefAttr)
       }
     }
+    return self.renderToken(tokens, idx, options)
+  }
+
+  md.renderer.rules.link_close = (tokens, idx, options, env, self) => {
+    const token = tokens[idx]
+    token.tag = renderTag
+
     return self.renderToken(tokens, idx, options)
   }
 

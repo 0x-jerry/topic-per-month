@@ -33,7 +33,9 @@ console.log('hello world')console.log('hello world')console.log('hello world')co
 console.log('hello world')
 ```
 
-## xxx
+## test link
+
+[temp](./temp/index.md)
 
 ### xxxx
 
