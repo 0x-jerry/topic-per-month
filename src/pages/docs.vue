@@ -9,6 +9,8 @@
   </v-header>
   <div class="pl-10 pr-70 pb-10 mt-20">
     <router-view />
+    <hr class="mt-15" />
+    <v-giscus class="py-10" />
   </div>
 </template>
 
