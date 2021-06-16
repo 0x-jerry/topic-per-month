@@ -6,12 +6,14 @@ import emoji from 'markdown-it-emoji'
 import toc from 'markdown-it-table-of-contents'
 // @ts-ignore
 import highlightLines from 'markdown-it-highlight-lines'
+import MarkdownItContainer from 'markdown-it-container'
 
 // modified based on https://github1s.com/vuejs/vitepress/blob/HEAD/src/node/markdown/plugins/link.ts
 // markdown-it plugin for:
 // 1. adding target="_blank" to external links
 // 2. normalize internal links
 import { URL } from 'url'
+import Token from 'markdown-it/lib/token'
 
 const indexRE = /(^|.*\/)index.md(#?.*)$/i
 
@@ -67,18 +69,47 @@ const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>) => {
   }
 }
 
+const createMdContainerOption = (marker = ':') => {
+  const tagQueue: string[] = []
+
+  return {
+    marker,
+    validate: function (params: string) {
+      return !!params
+    },
+    render: function (tokens: Token[], idx: number) {
+      const token = tokens[idx]
+
+      if (token.nesting === 1) {
+        const info = token.info.trim()
+        const [tag, props] = info.split(/\s+/)
+        tagQueue.push(tag)
+
+        // opening tag
+        return `<${tag} ${props}>`
+      } else {
+        const tag = tagQueue.pop()
+        // closing tag
+        return `</${tag}>`
+      }
+    },
+  }
+}
+
 export function setupMarkdownIt(md: MarkdownIt) {
   md.use(prism)
     .use(emoji)
     .use(anchor, {
-      permalinkSymbol: '#'
+      permalinkSymbol: '#',
     })
     .use(toc, {
-      includeLevel: [2, 3]
+      includeLevel: [2, 3],
     })
     .use(highlightLines)
     .use(linkPlugin, {
       target: '_blank',
-      rel: 'noopener noreferrer'
+      rel: 'noopener noreferrer',
     })
+    .use(MarkdownItContainer, 'vue-container', createMdContainerOption(':'))
+    .use(MarkdownItContainer, 'vue-slot', createMdContainerOption(';'))
 }

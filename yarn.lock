@@ -234,6 +234,13 @@
   resolved "https://registry.npmjs.org/@types/linkify-it/-/linkify-it-3.0.1.tgz#4d26a9efe3aa2caf829234ec5a39580fc88b6001"
   integrity sha512-pQv3Sygwxxh6jYQzXaiyWDAHevJqWtqDUv6t11Sa9CPGiXny66II7Pl6PR8QO5OVysD6HYOkHMeBgIjLnk9SkQ==
 
+"@types/markdown-it-container@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.nlark.com/@types/markdown-it-container/download/@types/markdown-it-container-2.0.3.tgz#436de4c019d7d71b60f759037fd4d03611569eb8"
+  integrity sha1-Q23kwBnX1xtg91kDf9TQNhFWnrg=
+  dependencies:
+    "@types/markdown-it" "*"
+
 "@types/markdown-it-emoji@^2.0.1":
   version "2.0.1"
   resolved "https://registry.npmjs.org/@types/markdown-it-emoji/-/markdown-it-emoji-2.0.1.tgz#60769abdbbd2e06d97efb6a02af8078f0e0dc135"
@@ -2335,6 +2342,11 @@ markdown-it-anchor@^8.0.0:
   version "8.0.0"
   resolved "https://registry.nlark.com/markdown-it-anchor/download/markdown-it-anchor-8.0.0.tgz?cache=0&sync_timestamp=1623702410434&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmarkdown-it-anchor%2Fdownload%2Fmarkdown-it-anchor-8.0.0.tgz#4c8cbb26ff5cc112d6af95f4cd772f6f5d88fb2f"
   integrity sha1-TIy7Jv9cwRLWr5X0zXcvb12I+y8=
+
+markdown-it-container@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-container/download/markdown-it-container-3.0.0.tgz#1d19b06040a020f9a827577bb7dbf67aa5de9a5b"
+  integrity sha1-HRmwYECgIPmoJ1d7t9v2eqXemls=
 
 markdown-it-emoji@^2.0.0:
   version "2.0.0"
