@@ -40,10 +40,13 @@ onUpdated(() => {
 const router = useRouter()
 
 function initTocLinks() {
-  updateTocActive()
-
   const toc = document.querySelector('.table-of-contents')
   if (!toc) return
+  if (toc?.getAttribute('data-init') === '1') return
+  toc.setAttribute('data-init', '1')
+
+  updateTocActive()
+
   const lis = toc.querySelectorAll('li')
 
   lis?.forEach((li) => {
@@ -53,10 +56,10 @@ function initTocLinks() {
       return
     }
 
-    a.onclick = (e) => {
+    a.addEventListener('click', (e) => {
       e.preventDefault()
       scrollToAnchor(a.href, router)
-    }
+    })
   })
 }
 
