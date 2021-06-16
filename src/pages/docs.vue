@@ -81,7 +81,7 @@ function updateTocActive() {
 
   const idx = linksTop.findIndex((l) => l.top - 100 > scrollPos.y.value) - 1
 
-  const tIdx = idx < 0 ? 0 : idx
+  const tIdx = idx < 0 ? linksTop.length - 1 : idx
 
   links.forEach((li) => li.classList.remove('active'))
   links.item(tIdx)?.classList.add('active')
