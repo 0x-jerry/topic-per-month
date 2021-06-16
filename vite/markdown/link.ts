@@ -5,7 +5,7 @@
 import { URL } from 'url'
 import MarkdownIt from 'markdown-it'
 
-const indexRE = /(^|.*\/)index.md(#?.*)$/i
+const indexRE = /(^|.*\/index).md(#?.*)$/i
 
 // use vue component instead of `a`
 const renderTag = 'v-link'

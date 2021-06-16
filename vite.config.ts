@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import md from 'vite-plugin-md'
-import pages from 'vite-plugin-pages'
+import pages, { Route } from 'vite-plugin-pages'
 import components from 'vite-plugin-components'
 import WindiCSS from 'vite-plugin-windicss'
 import { VitePluginSite } from './vite/vite-plugin-site'
@@ -19,6 +19,21 @@ export default defineConfig({
     pages({
       extensions: ['vue', 'md'],
       pagesDir: ['src/pages'],
+      onRoutesGenerated(routes) {
+        const visit = (routes: Route[]) => {
+          for (const route of routes) {
+            if (route.children) {
+              visit(route.children)
+            } else {
+              if (/index\.md$/.test(route.component)) {
+                route.path += '/index'
+              }
+            }
+          }
+        }
+
+        visit(routes)
+      },
     }),
     md({
       headEnabled: true,
@@ -30,7 +45,7 @@ export default defineConfig({
     components({
       globalComponentsDeclaration: true,
       extensions: ['vue', 'md'],
-      customLoaderMatcher: path => path.endsWith('.md'),
+      customLoaderMatcher: (path) => path.endsWith('.md'),
       customComponentResolvers: [ViteIconsResolver()],
     }),
     VitePluginSite('docs'),
