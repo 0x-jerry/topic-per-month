@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed right-0 bottom-0 transition-transform" :style="iconStyle" @click="go2top">
+  <div class="fixed right-0 bottom-0 transition-transform z-50" :style="iconStyle" @click="go2top">
     <span
       class="flex bg-light-600 rounded text-3xl hover:bg-light-400 text-gray-600 cursor-pointer"
     >
@@ -22,8 +22,8 @@ function go2top() {
 const pos = useWindowScroll()
 
 const iconStyle = computed(() => {
-  const r = pos.y.value > 100 ? '-5rem' : '2rem'
+  const r = pos.y.value > 100 ? '-3rem' : '2rem'
 
-  return `transform: translate(-14.6rem, ${r})`
+  return `transform: translate(-2rem, ${r})`
 })
 </script>

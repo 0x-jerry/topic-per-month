@@ -182,10 +182,10 @@ watch(() => scrollPos.y.value, updateTocActive)
   height: 70vh;
   overflow: auto;
 
-  @apply fixed top-24 right-10 bg-white;
+  @apply fixed top-24 right-10 bg-white z-50 border-gray-200;
 
   &::before {
-    content: ' ';
+    content: '';
     position: absolute;
     width: 1px;
     height: 100%;
@@ -205,7 +205,7 @@ watch(() => scrollPos.y.value, updateTocActive)
 
   & li a {
     color: inherit;
-    @apply block pl-3;
+    @apply block pl-3 py-2px;
 
     @apply text-gray-500;
 
