@@ -54,7 +54,7 @@ onMounted(() => {
 
       window.scrollTo({
         top: top - 85,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
     })
   })
@@ -70,7 +70,7 @@ function updateTocActive() {
 
     return {
       link,
-      top
+      top,
     }
   })
 
@@ -112,14 +112,6 @@ watch(() => scrollPos.y.value, updateTocActive)
     }
   }
 
-  code {
-    @apply font-mono;
-  }
-
-  :not(pre) code {
-    @apply text-red-600 px-2 py-1 bg-gray-100 rounded-sm;
-  }
-
   p {
     line-height: 2.2em;
     margin: 1.3em 0;
@@ -148,31 +140,6 @@ watch(() => scrollPos.y.value, updateTocActive)
   h5,
   h6 {
     margin: 1em 0;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @offset: 0.8em;
-    position: relative;
-    left: @offset;
-
-    &::before {
-      content: '#';
-      position: absolute;
-      top: 0;
-      left: -@offset;
-      @apply text-blue-500;
-    }
-
-    // &:hover {
-    //   &::before {
-    //     @apply text-blue-500;
-    //   }
-    // }
   }
 
   ol,
@@ -226,6 +193,11 @@ watch(() => scrollPos.y.value, updateTocActive)
   ul {
     list-style: none;
     padding-left: 0;
+    line-height: 1.3em;
+
+    li {
+      margin: 0;
+    }
   }
 
   & li a {
@@ -251,7 +223,7 @@ watch(() => scrollPos.y.value, updateTocActive)
   }
 
   & ul ul li {
-    @apply pl-5;
+    @apply pl-5 m-0;
   }
 }
 </style>

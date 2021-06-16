@@ -5,8 +5,9 @@ import pages from 'vite-plugin-pages'
 import components from 'vite-plugin-components'
 import WindiCSS from 'vite-plugin-windicss'
 import { VitePluginSite } from './vite/vite-plugin-site'
-import { setupMarkdownIt } from './vite/markdown-it'
 import Icons, { ViteIconsResolver } from 'vite-plugin-icons'
+import { highlight } from './vite/markdown/highlight'
+import { setupMarkdownIt } from './vite/markdown'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,15 +23,14 @@ export default defineConfig({
     md({
       headEnabled: true,
       markdownItOptions: {
-        linkify: true,
-        typographer: true,
+        highlight,
       },
       markdownItSetup: setupMarkdownIt,
     }),
     components({
       globalComponentsDeclaration: true,
       extensions: ['vue', 'md'],
-      customLoaderMatcher: (path) => path.endsWith('.md'),
+      customLoaderMatcher: path => path.endsWith('.md'),
       customComponentResolvers: [ViteIconsResolver()],
     }),
     VitePluginSite('docs'),

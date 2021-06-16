@@ -62,10 +62,10 @@
   resolved "https://registry.npm.taobao.org/@iconify/json-tools/download/@iconify/json-tools-1.0.10.tgz#d9a7050dbbe8bb29d684d4b3f9446ed2d0bea3cc"
   integrity sha1-2acFDbvouynWhNSz+URu0tC+o8w=
 
-"@iconify/json@^1.1.356":
-  version "1.1.356"
-  resolved "https://registry.nlark.com/@iconify/json/download/@iconify/json-1.1.356.tgz#248b25843cf91618dff7ef4494a1b331efd1eb82"
-  integrity sha1-JIslhDz5Fhjf9+9ElKGzMe/R64I=
+"@iconify/json@^1.1.357":
+  version "1.1.357"
+  resolved "https://registry.nlark.com/@iconify/json/download/@iconify/json-1.1.357.tgz#63dd3b358b80a3774e24ce0a136488b819a20dbd"
+  integrity sha1-Y907NYuAo3dOJM4KE2SIuBmiDb0=
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
@@ -224,6 +224,11 @@
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
+"@types/escape-html@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.nlark.com/@types/escape-html/download/@types/escape-html-1.0.1.tgz#b19b4646915f0ae2c306bf984dc0a59c5cfc97ba"
+  integrity sha1-sZtGRpFfCuLDBr+YTcClnFz8l7o=
+
 "@types/highlight.js@^9.7.0":
   version "9.12.4"
   resolved "https://registry.npmjs.org/@types/highlight.js/-/highlight.js-9.12.4.tgz#8c3496bd1b50cc04aeefd691140aa571d4dbfa34"
@@ -275,6 +280,11 @@
   version "15.12.2"
   resolved "https://registry.nlark.com/@types/node/download/@types/node-15.12.2.tgz#1f2b42c4be7156ff4a6f914b2fb03d05fa84e38d"
   integrity sha1-HytCxL5xVv9Kb5FLL7A9BfqE440=
+
+"@types/prismjs@^1.16.5":
+  version "1.16.5"
+  resolved "https://registry.nlark.com/@types/prismjs/download/@types/prismjs-1.16.5.tgz?cache=0&sync_timestamp=1621242582776&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fprismjs%2Fdownload%2F%40types%2Fprismjs-1.16.5.tgz#378f491ff02304ce50924b05283111d4a286ecba"
+  integrity sha1-N49JH/AjBM5QkksFKDER1KKG7Lo=
 
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2":
   version "2.0.3"
@@ -788,8 +798,8 @@ chalk@^2.0.1, chalk@^2.4.2:
 
 chalk@^4.1.1:
   version "4.1.1"
-  resolved "https://registry.npmjs.org/chalk/-/chalk-4.1.1.tgz#c80b3fab28bf6371e6863325eee67e618b77e6ad"
-  integrity sha512-diHzdDKxcU+bAsUboHLPEDQiw0qEe0qd7SYUn3HgcFlWgbDcfLGswOHYeGrHKzG9z6UYf01d9VFMfZxPM1xZSg==
+  resolved "https://registry.nlark.com/chalk/download/chalk-4.1.1.tgz#c80b3fab28bf6371e6863325eee67e618b77e6ad"
+  integrity sha1-yAs/qyi/Y3HmhjMl7uZ+YYt35q0=
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
@@ -1310,6 +1320,11 @@ escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
+
+escape-html@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/escape-html/download/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
+  integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
 escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -2338,10 +2353,10 @@ map-obj@^2.0.0:
   resolved "https://registry.npm.taobao.org/map-obj/download/map-obj-2.0.0.tgz?cache=0&sync_timestamp=1617771341569&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmap-obj%2Fdownload%2Fmap-obj-2.0.0.tgz#a65cd29087a92598b8791257a523e021222ac1f9"
   integrity sha1-plzSkIepJZi4eRJXpSPgISIqwfk=
 
-markdown-it-anchor@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.nlark.com/markdown-it-anchor/download/markdown-it-anchor-8.0.0.tgz?cache=0&sync_timestamp=1623702410434&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmarkdown-it-anchor%2Fdownload%2Fmarkdown-it-anchor-8.0.0.tgz#4c8cbb26ff5cc112d6af95f4cd772f6f5d88fb2f"
-  integrity sha1-TIy7Jv9cwRLWr5X0zXcvb12I+y8=
+markdown-it-anchor@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.nlark.com/markdown-it-anchor/download/markdown-it-anchor-8.0.1.tgz#21fb43cfc0866ee45853f37dab12241d99ebbf1f"
+  integrity sha1-IftDz8CGbuRYU/N9qxIkHZnrvx8=
 
 markdown-it-container@^3.0.0:
   version "3.0.0"
@@ -2806,7 +2821,7 @@ prettier@^2.3.0:
   resolved "https://registry.npmjs.org/prettier/-/prettier-2.3.0.tgz#b6a5bf1284026ae640f17f7ff5658a7567fc0d18"
   integrity sha512-kXtO4s0Lz/DW/IJ9QdWhAf7/NmPWQXkFr/r/WkR3vyI+0v8amTDxiaQSLzs8NBlytfLWX/7uQUMIW677yLKl4w==
 
-prismjs@1.23.0:
+prismjs@1.23.0, prismjs@^1.23.0:
   version "1.23.0"
   resolved "https://registry.npm.taobao.org/prismjs/download/prismjs-1.23.0.tgz#d3b3967f7d72440690497652a9d40ff046067f33"
   integrity sha1-07OWf31yRAaQSXZSqdQP8EYGfzM=

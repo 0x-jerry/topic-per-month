@@ -2,7 +2,7 @@ import App from './App.vue'
 import { ViteSSG } from 'vite-ssg'
 import routes from 'virtual:generated-pages'
 
-import 'prismjs/themes/prism.css'
+import './code-theme.less'
 import 'virtual:windi.css'
 
 if (import.meta.env.DEV) {

@@ -3,11 +3,19 @@ title: test page
 visible: false
 ---
 
+[[toc]]
+
 ::: v-test a=3 b=4
 
-```js
+```js {2}
+console.log('hello world')
+console.log('hello world')
 console.log('hello world')
 ```
+
+`js`
+
+`console.log('hello')`
 
 ;;; template #header="data"
 
@@ -18,3 +26,15 @@ console.log('hello world')
 xx
 
 :::
+
+```js {2}
+console.log('hello world')
+console.log('hello world')console.log('hello world')console.log('hello world')console.log('hello world')console.log('hello world')console.log('hello world')
+console.log('hello world')
+```
+
+## xxx
+
+### xxxx
+
+## 32
