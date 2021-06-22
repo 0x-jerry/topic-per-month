@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite-ssg build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "doc": "python3 gen-readme.py"
   },
   "dependencies": {
     "@vueuse/core": "^5.0.3",
