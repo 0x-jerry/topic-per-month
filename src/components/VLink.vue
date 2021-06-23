@@ -38,7 +38,10 @@ function scrollToAnchorEvent(e: MouseEvent) {
       <slot />
     </router-link>
     <a v-else :href="props.href" target="_blank">
-      <slot />
+      <span>
+        <slot />
+      </span>
+      <i-line-md-external-link-rounded />
     </a>
   </span>
 </template>
