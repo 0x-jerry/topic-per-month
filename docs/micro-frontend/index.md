@@ -32,8 +32,8 @@ const { A1 } = window._A
 export const routes = [
   {
     path: '/a-1',
-    component: A
-  }
+    component: A,
+  },
 ]
 ```
 
@@ -91,7 +91,7 @@ export const routes = [
 
 通过 [`Luigi.setConfig`](https://docs.luigi-project.io/docs/luigi-core-api?section=luigi-config) API 来配置网站的路由、授权、导航、本地化等。然后 [Luigi] 框架通过 iframe 切换不同的路由。
 
-消息机制也是通过 `window.postMessage` 实现，源代码 [code](https://github.com/SAP/luigi/blob/883c3924cf2ae83fce400cbfd7bf84f8c11359d7/client/src/helpers.js#L111-L119)
+消息机制也是通过 `window.postMessage` 实现，源代码 [source](https://github.com/SAP/luigi/blob/883c3924cf2ae83fce400cbfd7bf84f8c11359d7/client/src/helpers.js#L111-L119)
 
 ```js
   sendPostMessageToLuigiCore(msg) {
@@ -105,7 +105,7 @@ export const routes = [
   }
 ```
 
-路由也是通过封装的 `LuigiClient.linkManager`、`Luigi.navigation` 来管理跳转，实际原理也是通过发送消息来实现的，源代码 [code](https://github.com/SAP/luigi/blob/883c3924cf2ae83fce400cbfd7bf84f8c11359d7/client/src/linkManager.js#L56-L83)
+路由也是通过封装的 `LuigiClient.linkManager`、`Luigi.navigation` 来管理跳转，实际原理也是通过发送消息来实现的，源代码 [source](https://github.com/SAP/luigi/blob/883c3924cf2ae83fce400cbfd7bf84f8c11359d7/client/src/linkManager.js#L56-L83)
 
 ```js
   navigate(path, sessionId, preserveView, modalSettings, splitViewSettings, drawerSettings) {
@@ -172,9 +172,15 @@ export const routes = [
 
 ### QianKun
 
-关于状态共享，[QianKun] 实现了一个 [Global State](https://qiankun.umijs.org/api#initglobalstatestate) 方案，推荐阅读。
+关于状态共享，[QianKun] 实现了一个 [Global-State] 方案，推荐阅读。
 
-乾坤用的是 [import-html-entry] 的方式。
+关于资源加载部分，乾坤用的是 [import-html-entry] 的方式。因此，`JavaScript` 的执行环境可保证不会污染全局变量，`style` 则是通过添加 `css scoped` 来实现隔离。
+
+如果浏览器环境支持 [Shadow-Dom]，则会用 `shadow dom` 来处理环境隔离，具体代码 [source: Shadow-Dom](https://github.com/umijs/qiankun/blob/972872f5fe62ca87b6911fbe8c62b389ac65f9c5/src/loader.ts#L75-L92), [source: Css-Scoped](https://github.com/umijs/qiankun/blob/972872f5fe62ca87b6911fbe8c62b389ac65f9c5/src/loader.ts#L95-L105)。
+
+虽然支持 `shadow-dom`，但是建议不要使用 `shadow dom`，因为这会导致一些其它问题，例如第三方库中的 `Modal` 无法使用。
+
+关于通信，则可通过 [Global-State](https://qiankun.umijs.org/api#initglobalstatestate) 来处理。具体实现方式，则是通过 全局 实例来处理的。[source: Global-State](https://github.com/umijs/qiankun/blob/HEAD/src/globalState.ts)
 
 ## 微前端需要解决的问题
 
@@ -182,7 +188,6 @@ export const routes = [
 2. 通信问题
 3. 样式隔离问题
 4. 环境隔离问题
-5. 如何分离团队和开发
 
 ### 服务更新问题
 
@@ -201,6 +206,7 @@ export const routes = [
 1. [Luigi] 用到的 `window.postMessage`
 2. [Single-SPA] 提到的 `window.addEventListener/dispatchEvent` [source](https://single-spa.js.org/docs/recommended-setup/#ui-state)
 3. [EMP] 中自定义的模块，则可直接暴露函数
+4. [QianKun] 中自己实现一个 [Global-State]
 
 ### 样式隔离问题
 
@@ -210,13 +216,15 @@ export const routes = [
 
 但如果使用像 [Luigi] 这样利用 `iframe` 的框架，则天然支持样式隔离。
 
+或者是 [QianKun] 那样，加载的时候，自动添加加一层 `scope`。
+
 ### 环境隔离问题
 
 环境隔离，主要问题是全局环境变量的问题。要处理这个问题，第一个想到的肯定就是，人工约定一个格式，先到先得。这种方式够用，但不够友好。
 
 如果是 `iframe`，则没有这个问题。
 
-看 [QianKun] 的源代码的时候，看到其用到了 `Sandbox` 这个东西。仔细读了读，实际上是通过 [import-html-entry] 的 [getExecutableScript](https://github.com/kuitos/import-html-entry/blob/ab3e788ee868177ecf407f79b00d52ca2e2cdd47/src/index.js#L52-L63) 实现的。
+看 [QianKun] 的源代码的时候，看到其用到了 `Sandbox` 这个东西。仔细读了读，实际上是通过 [import-html-entry] 的 [source: getExecutableScript](https://github.com/kuitos/import-html-entry/blob/ab3e788ee868177ecf407f79b00d52ca2e2cdd47/src/index.js#L52-L63) 实现的。
 
 ```js {11}
 function getExecutableScript(scriptSrc, scriptText, proxy, strictGlobal) {
@@ -238,15 +246,13 @@ function getExecutableScript(scriptSrc, scriptText, proxy, strictGlobal) {
 我个人认为，这个方面就看情况了，如果开箱支持，那就用。如果不支持，那也没有必要非得用这种方式，就「约定」的方式也挺好的，
 也没什么大问题。
 
-### 如何分离团队和开发
-
-这个问题，想想都觉得不简单。我也只有吹吹自己的想法了。毕竟没有机会实践。
-
 ## 需要微前端吗？
 
 现在，对微前端有了一个整体的认识，我们真的需要微前端吗？
 
-这一点，说点软文吧，不管怎么样，还是要结合业务和实际情况认真考虑「微前端」带来的优势是否足够大。
+这一点，随便水一水吧。整体来讲，微前端在我看来，应用场景有限，入门需要一定的成本
+
+不管怎么样，还是要结合业务和实际情况认真考虑「微前端」带来的优势是否足够大。
 
 ## 推荐阅读
 
@@ -268,3 +274,5 @@ function getExecutableScript(scriptSrc, scriptText, proxy, strictGlobal) {
 [webpack5]: https://webpack.js.org/
 [single-spa-css]: https://single-spa.js.org/docs/ecosystem-css
 [import-html-entry]: https://github.com/kuitos/import-html-entry
+[global-state]: https://qiankun.umijs.org/api#initglobalstatestate
+[shadow-dom]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
