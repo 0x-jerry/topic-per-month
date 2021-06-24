@@ -20,7 +20,7 @@
         "
       >
         {{ o.title }}
-        <span v-if="o.visible">- 施工中</span>
+        <span v-if="!o.publish">- 施工中</span>
       </router-link>
     </li>
   </ul>

@@ -2,7 +2,6 @@
 title: 微前端
 date: 2021-06-01T02:03:01.122Z
 tags: [micro-frontend, web]
-publish: false
 ---
 
 [[toc]]
@@ -172,15 +171,17 @@ export const routes = [
 
 ### QianKun
 
-关于状态共享，[QianKun] 实现了一个 [Global-State] 方案，推荐阅读。
+通过官方的示例，简单体验了一下，相比前几个框架，这个体验下来是最流畅的。接下来，看看 [QianKun] 中具体细节的一些处理方式。
 
-关于资源加载部分，乾坤用的是 [import-html-entry] 的方式。因此，`JavaScript` 的执行环境可保证不会污染全局变量，`style` 则是通过添加 `css scoped` 来实现隔离。
+关于资源加载部分，乾坤用的是 [import-html-entry] 的方式。配置就比较简单，直接给一个 `html` 入口即可。基本原理是把 html 中的标签转移在当前需要挂载的 `div` 上，如果浏览器环境支持 [Shadow-Dom]，则会用 `shadow dom` 来处理环境隔离，具体代码 [source: Shadow-Dom](https://github.com/umijs/qiankun/blob/972872f5fe62ca87b6911fbe8c62b389ac65f9c5/src/loader.ts#L75-L92)。
 
-如果浏览器环境支持 [Shadow-Dom]，则会用 `shadow dom` 来处理环境隔离，具体代码 [source: Shadow-Dom](https://github.com/umijs/qiankun/blob/972872f5fe62ca87b6911fbe8c62b389ac65f9c5/src/loader.ts#L75-L92), [source: Css-Scoped](https://github.com/umijs/qiankun/blob/972872f5fe62ca87b6911fbe8c62b389ac65f9c5/src/loader.ts#L95-L105)。
+关于 `JavaScript` 执行环境，用的是 [import-html-entry] 的 `sandbox`，可保证不会污染全局变量。
+
+关于样式隔离，则是通过自动给每一条样式添加一个 `scoped` 来实现隔离 [source: Css-Scoped](https://github.com/umijs/qiankun/blob/972872f5fe62ca87b6911fbe8c62b389ac65f9c5/src/loader.ts#L95-L105)，如果支持 [Shadow-Dom] 则不需要处理。
 
 虽然支持 `shadow-dom`，但是建议不要使用 `shadow dom`，因为这会导致一些其它问题，例如第三方库中的 `Modal` 无法使用。
 
-关于通信，则可通过 [Global-State](https://qiankun.umijs.org/api#initglobalstatestate) 来处理。具体实现方式，则是通过 全局 实例来处理的。[source: Global-State](https://github.com/umijs/qiankun/blob/HEAD/src/globalState.ts)
+关于通信，[QianKun] 实现了一套基本的状态管理方案 [Global-State](https://qiankun.umijs.org/api#initglobalstatestate)。具体原理，则是通过 全局 实例来处理的。[source: Global-State](https://github.com/umijs/qiankun/blob/HEAD/src/globalState.ts)
 
 ## 微前端需要解决的问题
 
@@ -216,13 +217,13 @@ export const routes = [
 
 但如果使用像 [Luigi] 这样利用 `iframe` 的框架，则天然支持样式隔离。
 
-或者是 [QianKun] 那样，加载的时候，自动添加加一层 `scope`。
+或者是 [QianKun] 那样，加载的时候，自动添加上一层 `scope`。
 
 ### 环境隔离问题
 
 环境隔离，主要问题是全局环境变量的问题。要处理这个问题，第一个想到的肯定就是，人工约定一个格式，先到先得。这种方式够用，但不够友好。
 
-如果是 `iframe`，则没有这个问题。
+如果是用 `iframe`，则没有这个问题。
 
 看 [QianKun] 的源代码的时候，看到其用到了 `Sandbox` 这个东西。仔细读了读，实际上是通过 [import-html-entry] 的 [source: getExecutableScript](https://github.com/kuitos/import-html-entry/blob/ab3e788ee868177ecf407f79b00d52ca2e2cdd47/src/index.js#L52-L63) 实现的。
 
@@ -250,11 +251,16 @@ function getExecutableScript(scriptSrc, scriptText, proxy, strictGlobal) {
 
 现在，对微前端有了一个整体的认识，我们真的需要微前端吗？
 
-这一点，随便水一水吧。整体来讲，微前端在我看来，应用场景有限，入门需要一定的成本
+这个问题，每个人的看法不一样，**这里我就随便聊聊，看看就完事了，当真就输了。是否真的需要，还需自己考虑。**
 
-不管怎么样，还是要结合业务和实际情况认真考虑「微前端」带来的优势是否足够大。
+整体来讲，「微前端」在我看来，应用场景有限，入门需要一定的成本，虽然可以分离业务，也有很多优点。
 
-## 推荐阅读
+但是缺点也很明显，成本上去了，团队交流成本，开发成本都上升了。举一个小例子，有个需求需要应用 A 支持一下，但是应用 A 是其它团队负责，原本估计一天就能搞定的事情，经过交流，确认，最后开发，要三天才能搞定。
+在 [qiankun-技术圆桌] 中也提到过，「微前端」的目的是为了支持不同的技术栈（这点可推导出是为了支持不同的开发团队）。
+
+因此，在我看来，在项目没有大到一定程度（必须要跨团队）的时候，没必要考虑「微前端」。
+
+## 本文参考 & 推荐阅读
 
 - [micro-frontends]，一篇对「微前端」简单介绍的文章。
 - [martinfowler-micro-frontends]，分析「微前端」的优劣势，和一些实现方案以及细节处理方式。
