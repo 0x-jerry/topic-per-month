@@ -80,6 +80,9 @@ function initTocLinks() {
 }
 
 function updateTocActive() {
+  const toc = document.querySelector('.table-of-contents')
+  if (!toc) return
+
   const links: NodeListOf<HTMLLinkElement> = document.querySelectorAll('.table-of-contents li a')
 
   const linksTop = Array.from(links).map((link) => {
