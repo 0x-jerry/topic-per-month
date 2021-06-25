@@ -3,8 +3,22 @@
     <div class="flex-1 flex">
       <v-logo />
     </div>
-    <div class="flex-0 flex items-center">
-      <h1 class="text-4xl">{{ article?.title }}</h1>
+    <div class="flex-0 flex">
+      <div class="flex items-end">
+        <small
+          class="
+          mx-1 
+          px-3 
+          rounded-full 
+          border
+          text-gray-500
+          border-gray-500 
+          "
+          v-for="o in article?.tags"
+        >
+          # {{ o }}
+        </small>
+      </div>
     </div>
   </v-header>
   <div class="pl-10 pr-70 pb-10 mt-20">
@@ -24,7 +38,7 @@ import { scrollToAnchor } from '../utils'
 const route = useRoute()
 
 const article = computed(() => {
-  const routePath = route.path.split('/').pop()
+  const routePath = route.path.slice('/docs/'.length)
 
   return conf.articles.find((a) => a.routePath === routePath)
 })

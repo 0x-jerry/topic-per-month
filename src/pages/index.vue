@@ -8,14 +8,16 @@
       <router-link
         :to="`/docs/${o.routePath}`"
         class="
-          card
+          border
           block
           my-4
           mx-2
           p-5
+          min-w-50
           capitalize
-          transition-shadow transition-colors
-          hover:card-lg
+          transition-colors
+        border-gray-300
+          hover:border-blue-400
           hover:text-blue-500
         "
       >
