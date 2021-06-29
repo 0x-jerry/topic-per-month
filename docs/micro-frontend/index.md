@@ -31,7 +31,7 @@ const { A1 } = window._A
 export const routes = [
   {
     path: '/a-1',
-    component: A,
+    component: A1,
   },
 ]
 ```
