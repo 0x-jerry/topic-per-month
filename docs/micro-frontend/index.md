@@ -4,6 +4,8 @@ date: 2021-06-01T02:03:01.122Z
 tags: [micro-frontend, web]
 ---
 
+本文尝试分享一下「微前端」这个概念，以及目前（2021-06-01）主要的几种实现方案。
+
 [[toc]]
 
 ## 什么是微前端？
@@ -260,13 +262,30 @@ function getExecutableScript(scriptSrc, scriptText, proxy, strictGlobal) {
 
 因此，在我看来，在项目没有大到一定程度（必须要跨团队）的时候，没必要考虑「微前端」。
 
-## 本文参考 & 推荐阅读
+## 推荐阅读
 
 - [micro-frontends]，一篇对「微前端」简单介绍的文章。
 - [martinfowler-micro-frontends]，分析「微前端」的优劣势，和一些实现方案以及细节处理方式。
 - [qiankun-技术圆桌]，探讨「微前端」的目的，使命。
 - [Single-SPA Concept](https://single-spa.js.org/docs/microfrontends-concept)，「微前端」概念介绍，以及开发方向指导。
 - [Single-SPA Recommended-setup](https://single-spa.js.org/docs/recommended-setup)，「微前端」推荐实现方案。
+
+## 参考文献
+
+- [micro-frontends]
+- [martinfowler-micro-frontends]
+- [web-component]
+- [qiankun-技术圆桌]
+- [webpack-module-federation]
+- [luigi]
+- [emp]
+- [single-spa]
+- [qiankun]
+- [webpack5]
+- [single-spa-css]
+- [import-html-entry]
+- [global-state]
+- [shadow-dom]
 
 [micro-frontends]: https://micro-frontends.org/
 [martinfowler-micro-frontends]: https://martinfowler.com/articles/micro-frontends.html
