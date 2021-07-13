@@ -1,5 +1,5 @@
 import { useWindowScroll } from '@vueuse/core'
-import { computed } from 'vue-demi'
+import { computed } from 'vue'
 
 export function useInteractiveShadow() {
   const pos = useWindowScroll()

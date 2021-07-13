@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue-demi'
+import { onMounted, ref } from 'vue'
 const el = ref<HTMLDivElement>()
 
 onMounted(() => {
@@ -20,7 +20,7 @@ function createScript() {
   script.crossOrigin = 'anonymous'
   script.async = true
 
-  script.setAttribute('data-repo', 'cwxyz007/topic-per-month')
+  script.setAttribute('data-repo', '0x-jerry/topic-per-month')
   script.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkzNzI2NzI5NzA=')
   script.setAttribute('data-category', 'General')
   script.setAttribute('data-category-id', 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDMwODM4')
