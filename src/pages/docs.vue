@@ -96,12 +96,18 @@ function updateTocActive() {
     }
   })
 
-  const idx = linksTop.findIndex((l) => l.top - 100 > scrollPos.y.value) - 1
+  const firstLink = linksTop[0]
+  const lastLink = linksTop[linksTop.length - 1]
 
-  const tIdx = idx < 0 ? linksTop.length - 1 : idx
+  const idx =
+    scrollPos.y.value <= firstLink.top
+      ? 0
+      : scrollPos.y.value >= lastLink.top
+      ? linksTop.length - 1
+      : linksTop.findIndex((l) => l.top - 100 > scrollPos.y.value) - 1
 
   links.forEach((li) => li.classList.remove('active'))
-  links.item(tIdx)?.classList.add('active')
+  links.item(idx)?.classList.add('active')
 }
 
 watch(() => scrollPos.y.value, updateTocActive)
