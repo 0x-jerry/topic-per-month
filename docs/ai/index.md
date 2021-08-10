@@ -4,6 +4,8 @@ describe: 用算法去找出大脑的是学习模式
 publish: false
 ---
 
+[[toc]]
+
 本文记录在学习 [ML-For-Beginner] 课程中的一些笔记和总结。
 
 ## 第一章 - ML 简介
