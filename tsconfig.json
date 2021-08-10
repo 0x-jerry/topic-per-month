@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "vite-plugin-pages/client"]
   },
   "include": ["src", "vite", "vite.config.ts", "components.d.ts"]
 }
