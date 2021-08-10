@@ -55,5 +55,8 @@ publish: false
 
 ## 参考文献
 
+- [ML For Beginner][ml-for-beginner]
+- [An introduction to variable and feature selection][ml-for-beginner]
+
 [ml-for-beginner]: https://github.com/microsoft/ML-For-Beginners
 [introduction-to-feature]: https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection
