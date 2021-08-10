@@ -10,7 +10,8 @@ publish: false
 
 ## 第一章 - ML 简介
 
-机器学习 关注的是使用专门的算法来发现有意义的信息，并从感知的数据中找到隐藏的模式，以佐证理性的决策过程。(ML is concerned with using specialized algorithms to uncover meaningful information and find hidden patterns from perceived data to corroborate the rational decision-making process.)
+机器学习 关注的是使用专门的算法来发现有意义的信息，并从感知的数据中找到隐藏的模式，以佐证理性的决策过程。<br>
+ML is concerned with using specialized algorithms to uncover meaningful information and find hidden patterns from perceived data to corroborate the rational decision-making process.
 
 ### 构建机器学习的过程
 
