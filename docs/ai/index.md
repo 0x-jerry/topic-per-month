@@ -10,8 +10,9 @@ publish: false
 
 ## 第一章 - ML 简介
 
-机器学习 关注的是使用专门的算法来发现有意义的信息，并从感知的数据中找到隐藏的模式，以佐证理性的决策过程。<br>
-ML is concerned with using specialized algorithms to uncover meaningful information and find hidden patterns from perceived data to corroborate the rational decision-making process.
+> 机器学习 关注的是使用专门的算法来发现有意义的信息，并从感知的数据中找到隐藏的模式，以佐证理性的决策过程。
+>
+> ML is concerned with using specialized algorithms to uncover meaningful information and find hidden patterns from perceived data to corroborate the rational decision-making process.
 
 ### 构建机器学习的过程
 
@@ -56,10 +57,27 @@ ML is concerned with using specialized algorithms to uncover meaningful informat
 
 ## 回归模型
 
+回归模型属于监督式学习，回归模型适用于预测数据集中的某个属性。
+
+### [线性回归模型][linear-regression]
+
+用一个或者多个变量去表示目标值。
+
+- [Lasso][lasso]
+- [Tikhonov][tikhonov]
+
+### 非线行回归模型
+
 ## 参考文献
 
-- [ML For Beginner][ml-for-beginner]
-- [An introduction to variable and feature selection][ml-for-beginner]
+- [ML For beginner][ml-for-beginner]
+- [introduction To Feature][introduction-to-feature]
+- [Linear Regression][linear-regression]
+- [Lasso Regression][lasso]
+- [Tikhonov Regression][tikhonov]
 
 [ml-for-beginner]: https://github.com/microsoft/ML-For-Beginners
 [introduction-to-feature]: https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection
+[linear-regression]: https://www.wikiwand.com/en/Linear_regression
+[lasso]: https://www.wikiwand.com/en/Lasso_(statistics)
+[tikhonov]: https://www.wikiwand.com/en/Tikhonov_regularization
