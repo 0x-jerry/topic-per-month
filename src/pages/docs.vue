@@ -165,7 +165,7 @@ watch(() => scrollPos.y.value, updateTocActive)
 
   ol,
   ul {
-    padding-left: 1em;
+    padding-left: 1.5em;
 
     li {
       margin: 0.5em 0;
