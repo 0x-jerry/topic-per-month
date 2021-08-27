@@ -6,14 +6,7 @@
     <div class="flex-0 flex">
       <div class="flex items-end">
         <small
-          class="
-          mx-1 
-          px-3 
-          rounded-full 
-          border
-          text-gray-500
-          border-gray-500 
-          "
+          class="mx-1 px-3 rounded-full border text-gray-500 border-gray-500"
           v-for="o in article?.tags"
         >
           # {{ o }}
@@ -31,7 +24,7 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
 import conf from 'virtual:site'
-import { computed, onMounted, onUpdated, watch } from '@vue/runtime-core'
+import { computed, onMounted, onUpdated, watch } from 'vue'
 import { useWindowScroll } from '@vueuse/core'
 import { scrollToAnchor } from '../utils'
 
