@@ -5,6 +5,12 @@
     </div>
     <div class="flex-0 flex">
       <div class="flex items-end">
+        <small class="mx-1 px-3 rounded-full border text-blue-500 border-blue-500">
+          {{ article?.title }}
+        </small>
+        <small class="mx-1 px-3 rounded-full border text-blue-500 border-blue-500">
+          {{ dayjs(article?.lastUpdateDate).format('YYYY-MM-DD HH:mm') }}
+        </small>
         <small
           class="mx-1 px-3 rounded-full border text-gray-500 border-gray-500"
           v-for="o in article?.tags"
@@ -27,6 +33,7 @@ import conf from 'virtual:site'
 import { computed, onMounted, onUpdated, watch } from 'vue'
 import { useWindowScroll } from '@vueuse/core'
 import { scrollToAnchor } from '../utils'
+import dayjs from 'dayjs'
 
 const route = useRoute()
 
