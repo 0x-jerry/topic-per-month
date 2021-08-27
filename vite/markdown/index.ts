@@ -13,10 +13,9 @@ import { highlightLinePlugin } from './highlightLines'
 export function setupMarkdownIt(md: MarkdownIt) {
   md.use(emoji)
     .use(anchor, {
-      permalink: true,
-      permalinkBefore: true,
-      permalinkSymbol: '#',
-      permalinkAttrs: () => ({ 'aria-hidden': true }),
+      permalink: anchor.permalink.ariaHidden({
+        placement: 'before',
+      }),
     })
     .use(toc, {
       includeLevel: [2, 3],

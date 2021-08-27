@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, watchEffect, reactive } from 'vue'
+import { watchEffect, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { scrollToAnchor } from '../utils'
 
