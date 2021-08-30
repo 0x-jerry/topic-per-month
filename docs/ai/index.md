@@ -59,14 +59,16 @@ publish: false
 
 回归模型属于监督式学习，回归模型适用于预测数据集中的某个属性。
 
-### [线性回归模型][linear-regression]
+### [线性回归][linear-regression]
 
-用一个或者多个变量去表示目标值。
+用一个或者多个变量去表示目标值，常用于预测某个特征的值。 两种常见的线性回归模型
 
 - [Lasso][lasso]
 - [Tikhonov][tikhonov]
 
-### 非线行回归模型
+### [逻辑回归][logistic-regression]
+
+常用于分类，目标特征值需要是已知的有限个数。
 
 ## 参考文献
 
@@ -81,3 +83,4 @@ publish: false
 [linear-regression]: https://www.wikiwand.com/en/Linear_regression
 [lasso]: https://www.wikiwand.com/en/Lasso_(statistics)
 [tikhonov]: https://www.wikiwand.com/en/Tikhonov_regularization
+[logistic-regression]: https://www.wikiwand.com/en/Logistic_regression
