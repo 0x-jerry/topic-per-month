@@ -2,10 +2,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import md from 'vite-plugin-md'
 import pages, { Route } from 'vite-plugin-pages'
-import components from 'vite-plugin-components'
+import Components from 'unplugin-vue-components/vite'
 import WindiCSS from 'vite-plugin-windicss'
 import { VitePluginSite } from './vite/vite-plugin-site'
-import Icons, { ViteIconsResolver } from 'vite-plugin-icons'
+import Icons from 'unplugin-icons/vite'
+import ViteIconsResolver from 'unplugin-icons/resolver'
 import { highlight } from './vite/markdown/highlight'
 import { setupMarkdownIt } from './vite/markdown'
 
@@ -42,11 +43,11 @@ export default defineConfig({
       },
       markdownItSetup: setupMarkdownIt,
     }),
-    components({
-      globalComponentsDeclaration: true,
+    Components({
+      dts: true,
       extensions: ['vue', 'md'],
-      customLoaderMatcher: (path) => path.endsWith('.md'),
-      customComponentResolvers: [ViteIconsResolver()],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      resolvers: [ViteIconsResolver()],
     }),
     VitePluginSite('docs'),
     WindiCSS({

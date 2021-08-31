@@ -12,21 +12,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Node
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npm.taobao.org
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
+      - name: Cache .pnpm-store
+        uses: actions/cache@v1
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - run: yarn --frozen-lockfile
-      - run: yarn build
+      - name: Install pnpm
+        run: curl -f https://get.pnpm.io/v6.14.js | node - add --global pnpm@6
+
+      - run: pnpm i
+      - run: pnpm run build
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3.7.3
