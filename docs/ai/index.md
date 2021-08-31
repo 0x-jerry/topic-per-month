@@ -70,6 +70,17 @@ publish: false
 
 常用于分类，目标特征值需要是已知的有限个数。
 
+## [ONNX（Open Neural Network Exchange）][onnx]
+
+机器学习通用数据模型结构，主要用于不同框架采用相同格式存储模型数据并交互。源码 [Github - ONNX](https://github.com/onnx/onnx)。
+
+## 分类
+
+在分类训练之前，需要先对数据进行处理。
+
+1. 清除用不到的数据。
+2. 用 [SMOTE][smote] 补充数据，使数据平衡。这样训练出来的模型就不会有偏向性。
+
 ## 参考文献
 
 - [ML For beginner][ml-for-beginner]
@@ -77,6 +88,7 @@ publish: false
 - [Linear Regression][linear-regression]
 - [Lasso Regression][lasso]
 - [Tikhonov Regression][tikhonov]
+- https://scikit-learn.org/stable/supervised_learning.html
 
 [ml-for-beginner]: https://github.com/microsoft/ML-For-Beginners
 [introduction-to-feature]: https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection
@@ -84,3 +96,6 @@ publish: false
 [lasso]: https://www.wikiwand.com/en/Lasso_(statistics)
 [tikhonov]: https://www.wikiwand.com/en/Tikhonov_regularization
 [logistic-regression]: https://www.wikiwand.com/en/Logistic_regression
+[onnx]: https://www.wikiwand.com/en/Open_Neural_Network_Exchange
+[supervised-learning]: https://wikipedia.org/wiki/Supervised_learning
+[smote]: https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html
