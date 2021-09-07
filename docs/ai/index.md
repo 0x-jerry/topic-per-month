@@ -6,9 +6,11 @@ publish: false
 
 [[toc]]
 
-本文记录在学习 [ML-For-Beginner] 课程中的一些笔记和总结。
+这是一篇没有高等数学基础的初学者的笔记，除非你仅仅是想了解一下机器学习的概念，否则不建议继续往下读。
 
-## 第一章 - ML 简介
+本文主要记录在学习 [ML-For-Beginner] 课程中的一些笔记和总结。
+
+## ML 简介
 
 > 机器学习 关注的是使用专门的算法来发现有意义的信息，并从感知的数据中找到隐藏的模式，以佐证理性的决策过程。
 >
@@ -30,12 +32,14 @@ publish: false
 
 ### 特征
 
+通常指一个数据集中的每一个属性，详情参考 [Introduction to Feature][introduction-to-feature]。
+
 1. 特征选择：特征选择是从已有的特征中，选择一个子集
 2. 特征提取：根据已有特征，创建一个新的特征
 
 ### 数据可视化
 
-数据可视化，可以帮忙我们更好的发现数据之间（隐藏）的关系
+通过代码，可视化的显示数据与数据之间的关系。这可以帮忙我们更好的发现数据之间隐藏的关系。
 
 ### 分离数据集
 
@@ -55,40 +59,72 @@ publish: false
 4. 参数调优
 5. 预测
 
-## 回归模型
+## [监督式学习 Supervised Learning][supervised-learning]
 
-回归模型属于监督式学习，回归模型适用于预测数据集中的某个属性。
+> Supervised learning (SL) is the machine learning task of learning a function that maps an input to an output based on example input-output pairs. ----- [wiki][supervised-learning]
+>
+> 监督式学习是基于实例的输入-输出对，来构建一个映射函数。
 
-### [线性回归][linear-regression]
+监督式学习适用于 已经做过标记(labeled) 的数据。
+
+通过标记的数据，构建一个映射函数。此映射函数可用来预测对应的特征值。
+
+监督式学习的一些方法：
+
+1. [线性回归][linear-regression]
 
 用一个或者多个变量去表示目标值，常用于预测某个特征的值。 两种常见的线性回归模型
 
 - [Lasso][lasso]
 - [Tikhonov][tikhonov]
 
-### [逻辑回归][logistic-regression]
+2. [逻辑回归][logistic-regression]
 
 常用于分类，目标特征值需要是已知的有限个数。
 
 ## [ONNX（Open Neural Network Exchange）][onnx]
 
-机器学习通用数据模型结构，主要用于不同框架采用相同格式存储模型数据并交互。源码 [Github - ONNX](https://github.com/onnx/onnx)。
+`ONNX` 是一种机器学习通用数据模型结构，主要用于不同框架采用相同格式存储模型数据并交互。源码 [Github - ONNX](https://github.com/onnx/onnx)。
 
-## 分类
+这让训练好的模型，可复用于多个不同场景。
 
-在分类训练之前，需要先对数据进行处理。
+## 数据处理
 
-1. 清除用不到的数据。
-2. 用 [SMOTE][smote] 补充数据，使数据平衡。这样训练出来的模型就不会有偏向性。
+在训练之前，需要先对数据进行处理。主要提取以下几点：
+
+1. 除去用不到的数据。
+2. 除去部分缺失的数据。
+3. 对于监督式学习中的分类学习算法，有时候需要用 [SMOTE][smote] 补充数据，使数据平衡。这样训练出来的模型就不会有偏向性。
+
+## [无监督学习 Unsupervised Learning][unsupervised-learning]
+
+> Unsupervised learning is a type of machine learning in which the algorithm is not provided with any pre-assigned labels or scores for the training data. -- [wiki][unsupervised-learning]
+>
+> 无监督学习一种用于无标签数据(Data without labels)的机器学习的算法。
+
+根据定义可看出，无监督式学习并不需要数据的标签，因此，无监督学习需要自己发现数据之间隐藏的关系。
+
+[聚类 Clustering][cluster-analysis]，无监督学习的一个类别。
+
+## 总结
+
+在了解机器学习的过程，发现没有数学基础，好多机器学习的算法，在我眼中，全都是天书，仅仅能从代码的角度，去寻找成就感。
+
+虽然，这很难，但也不妨碍我站在巨人的肩膀上做事情。
+
+通过，这个阶段的学习，已经清楚，传统的机器学习，就是通过算法，去构建一个数据集和特征值之间的映射。利用构建好的这个映射关系，
+去预测或者归类未知的数据。
 
 ## 参考文献
 
-- [ML For beginner][ml-for-beginner]
+- [ML For Beginner][ml-for-beginner]
 - [introduction To Feature][introduction-to-feature]
 - [Linear Regression][linear-regression]
 - [Lasso Regression][lasso]
 - [Tikhonov Regression][tikhonov]
 - https://scikit-learn.org/stable/supervised_learning.html
+- [Supervised Learning][supervised-learning]
+- [Unsupervised Learning][unsupervised-learning]
 
 [ml-for-beginner]: https://github.com/microsoft/ML-For-Beginners
 [introduction-to-feature]: https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection
@@ -99,3 +135,5 @@ publish: false
 [onnx]: https://www.wikiwand.com/en/Open_Neural_Network_Exchange
 [supervised-learning]: https://wikipedia.org/wiki/Supervised_learning
 [smote]: https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html
+[unsupervised-learning]: https://www.wikiwand.com/en/Unsupervised_learning
+[cluster-analysis]: https://www.wikiwand.com/en/Cluster_analysis
