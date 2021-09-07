@@ -33,9 +33,11 @@ specifiers:
   unplugin-vue-components: ^0.14.12
   vite: ^2.5.3
   vite-plugin-md: ^0.11.0
+  vite-plugin-optimize-persist: ^0.0.5
+  vite-plugin-package-config: ^0.0.3
   vite-plugin-pages: ^0.18.0
   vite-plugin-windicss: ^1.4.1
-  vite-ssg: ^0.14.7
+  vite-ssg: ^0.15.1
   vue: ^3.2.9
   vue-router: ^4.0.11
   windicss: ^3.1.7
@@ -79,9 +81,11 @@ devDependencies:
   unplugin-vue-components: registry.nlark.com/unplugin-vue-components/0.14.12_vite@2.5.3+vue@3.2.9
   vite: registry.nlark.com/vite/2.5.3
   vite-plugin-md: registry.nlark.com/vite-plugin-md/0.11.0_vite@2.5.3
+  vite-plugin-optimize-persist: registry.nlark.com/vite-plugin-optimize-persist/0.0.5_7c8d5ef2922b556fa0ec4be529ea1ff7
+  vite-plugin-package-config: registry.nlark.com/vite-plugin-package-config/0.0.3_vite@2.5.3
   vite-plugin-pages: registry.nlark.com/vite-plugin-pages/0.18.0_da9b90f9b1d8d241ada6901548f8f429
   vite-plugin-windicss: registry.nlark.com/vite-plugin-windicss/1.4.1_typescript@4.4.2+vite@2.5.3
-  vite-ssg: registry.nlark.com/vite-ssg/0.14.7_ad64a2edb3b41093c914853d469ad2a4
+  vite-ssg: registry.nlark.com/vite-ssg/0.15.1_ad64a2edb3b41093c914853d469ad2a4
   windicss: registry.nlark.com/windicss/3.1.7
 
 packages:
@@ -96,6 +100,8 @@ packages:
     engines: {node: '>= 6.0.0'}
     dependencies:
       debug: registry.nlark.com/debug/4.3.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /any-promise/1.3.0:
@@ -278,6 +284,8 @@ packages:
       '@tootallnate/once': 1.1.2
       agent-base: 6.0.2
       debug: registry.nlark.com/debug/4.3.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /https-proxy-agent/5.0.0:
@@ -286,6 +294,8 @@ packages:
     dependencies:
       agent-base: 6.0.2
       debug: registry.nlark.com/debug/4.3.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /icss-replace-symbols/1.1.0:
@@ -1089,6 +1099,11 @@ packages:
     peerDependencies:
       '@vue/composition-api': ^1.1.0
       vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
     dependencies:
       '@vueuse/shared': registry.nlark.com/@vueuse/shared/6.2.1_vue@3.2.9
       vue: registry.nlark.com/vue/3.2.9
@@ -1114,6 +1129,11 @@ packages:
     peerDependencies:
       '@vue/composition-api': ^1.1.0
       vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
     dependencies:
       vue: registry.nlark.com/vue/3.2.9
       vue-demi: registry.nlark.com/vue-demi/0.11.4_vue@3.2.9
@@ -1130,6 +1150,7 @@ packages:
       tsup: registry.nlark.com/tsup/4.14.0_typescript@4.4.2
       windicss: registry.nlark.com/windicss/3.1.7
     transitivePeerDependencies:
+      - supports-color
       - ts-node
       - typescript
     dev: true
@@ -1148,6 +1169,7 @@ packages:
       micromatch: 4.0.4
       windicss: registry.nlark.com/windicss/3.1.7
     transitivePeerDependencies:
+      - supports-color
       - ts-node
       - typescript
     dev: true
@@ -1432,6 +1454,11 @@ packages:
     name: debug
     version: 4.3.2
     engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: registry.nlark.com/ms/2.1.2
     dev: true
@@ -2160,6 +2187,7 @@ packages:
       xml-name-validator: registry.nlark.com/xml-name-validator/3.0.0
     transitivePeerDependencies:
       - bufferutil
+      - supports-color
       - utf-8-validate
     dev: true
 
@@ -2501,6 +2529,9 @@ packages:
     engines: {node: '>= 10'}
     peerDependencies:
       ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      ts-node:
+        optional: true
     dependencies:
       import-cwd: registry.nlark.com/import-cwd/3.0.0
       lilconfig: registry.nlark.com/lilconfig/2.0.3
@@ -2843,6 +2874,9 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: ^4.2.3
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       cac: registry.nlark.com/cac/6.7.3
       chalk: registry.nlark.com/chalk/4.1.2
@@ -2859,6 +2893,7 @@ packages:
       tree-kill: 1.2.2
       typescript: registry.nlark.com/typescript/4.4.2
     transitivePeerDependencies:
+      - supports-color
       - ts-node
     dev: true
 
@@ -2926,6 +2961,15 @@ packages:
       '@vue/compiler-sfc': ^3.0.2
       vue-template-compiler: ^2.6.12
       vue-template-es2015-compiler: ^1.9.0
+    peerDependenciesMeta:
+      '@svgr/core':
+        optional: true
+      '@vue/compiler-sfc':
+        optional: true
+      vue-template-compiler:
+        optional: true
+      vue-template-es2015-compiler:
+        optional: true
     dependencies:
       '@iconify/json': registry.nlark.com/@iconify/json/1.1.398
       '@iconify/json-tools': registry.nlark.com/@iconify/json-tools/1.0.10
@@ -2957,6 +3001,7 @@ packages:
       vue: registry.nlark.com/vue/3.2.9
     transitivePeerDependencies:
       - rollup
+      - supports-color
       - vite
       - webpack
     dev: true
@@ -2970,6 +3015,13 @@ packages:
       rollup: ^2.50.0
       vite: ^2.3.0
       webpack: ^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+      vite:
+        optional: true
+      webpack:
+        optional: true
     dependencies:
       upath: registry.nlark.com/upath/2.0.1
       vite: registry.nlark.com/vite/2.5.3
@@ -3008,6 +3060,37 @@ packages:
       vite: registry.nlark.com/vite/2.5.3
     dev: true
 
+  registry.nlark.com/vite-plugin-optimize-persist/0.0.5_7c8d5ef2922b556fa0ec4be529ea1ff7:
+    resolution: {integrity: sha1-/ftA5QLIesCRhsa6R4VsszyJECk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/vite-plugin-optimize-persist/download/vite-plugin-optimize-persist-0.0.5.tgz}
+    id: registry.nlark.com/vite-plugin-optimize-persist/0.0.5
+    name: vite-plugin-optimize-persist
+    version: 0.0.5
+    peerDependencies:
+      vite: ^2.0.0
+      vite-plugin-package-config: ^0.0.3
+    dependencies:
+      debug: registry.nlark.com/debug/4.3.2
+      fs-extra: registry.nlark.com/fs-extra/10.0.0
+      vite: registry.nlark.com/vite/2.5.3
+      vite-plugin-package-config: registry.nlark.com/vite-plugin-package-config/0.0.3_vite@2.5.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  registry.nlark.com/vite-plugin-package-config/0.0.3_vite@2.5.3:
+    resolution: {integrity: sha1-hmfb///T6voPaXw4ZlnWU/c3uIc=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/vite-plugin-package-config/download/vite-plugin-package-config-0.0.3.tgz}
+    id: registry.nlark.com/vite-plugin-package-config/0.0.3
+    name: vite-plugin-package-config
+    version: 0.0.3
+    peerDependencies:
+      vite: ^2.0.0
+    dependencies:
+      debug: registry.nlark.com/debug/4.3.2
+      vite: registry.nlark.com/vite/2.5.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   registry.nlark.com/vite-plugin-pages/0.18.0_da9b90f9b1d8d241ada6901548f8f429:
     resolution: {integrity: sha1-ETyfwRAcwIg4cV0qMFIm08I+Vog=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/vite-plugin-pages/download/vite-plugin-pages-0.18.0.tgz}
     id: registry.nlark.com/vite-plugin-pages/0.18.0
@@ -3016,6 +3099,9 @@ packages:
     peerDependencies:
       '@vue/compiler-sfc': '>=3'
       vite: '>=2'
+    peerDependenciesMeta:
+      '@vue/compiler-sfc':
+        optional: true
     dependencies:
       '@antfu/utils': registry.nlark.com/@antfu/utils/0.3.0
       '@vue/compiler-sfc': registry.nlark.com/@vue/compiler-sfc/3.2.9
@@ -3025,6 +3111,8 @@ packages:
       json5: 2.2.0
       vite: registry.nlark.com/vite/2.5.3
       yaml: registry.nlark.com/yaml/2.0.0-8
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.nlark.com/vite-plugin-windicss/1.4.1_typescript@4.4.2+vite@2.5.3:
@@ -3041,15 +3129,16 @@ packages:
       vite: registry.nlark.com/vite/2.5.3
       windicss: registry.nlark.com/windicss/3.1.7
     transitivePeerDependencies:
+      - supports-color
       - ts-node
       - typescript
     dev: true
 
-  registry.nlark.com/vite-ssg/0.14.7_ad64a2edb3b41093c914853d469ad2a4:
-    resolution: {integrity: sha1-ZikkM3odDuLtLF88pA31jIWQ9HM=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/vite-ssg/download/vite-ssg-0.14.7.tgz}
-    id: registry.nlark.com/vite-ssg/0.14.7
+  registry.nlark.com/vite-ssg/0.15.1_ad64a2edb3b41093c914853d469ad2a4:
+    resolution: {integrity: sha1-1smz0AAYDZjB+RhXJex8IN1OHjI=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/vite-ssg/download/vite-ssg-0.15.1.tgz}
+    id: registry.nlark.com/vite-ssg/0.15.1
     name: vite-ssg
-    version: 0.14.7
+    version: 0.15.1
     engines: {node: '>=14.0.0'}
     hasBin: true
     peerDependencies:
@@ -3077,6 +3166,7 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - canvas
+      - supports-color
       - utf-8-validate
     dev: true
 
@@ -3106,6 +3196,9 @@ packages:
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
       vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
     dependencies:
       vue: registry.nlark.com/vue/3.2.9
     dev: false

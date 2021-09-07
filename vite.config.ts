@@ -9,11 +9,15 @@ import Icons from 'unplugin-icons/vite'
 import ViteIconsResolver from 'unplugin-icons/resolver'
 import { highlight } from './vite/markdown/highlight'
 import { setupMarkdownIt } from './vite/markdown'
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/topic-per-month/',
   plugins: [
+    PkgConfig(),
+    OptimizationPersist(),
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
