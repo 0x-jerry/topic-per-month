@@ -1,12 +1,11 @@
 ---
 title: 机器学习 ML
-describe: 用算法去找出大脑的是学习模式
-publish: false
+tags: [ml]
 ---
 
 [[toc]]
 
-这是一篇没有高等数学基础的初学者的笔记，除非你仅仅是想了解一下机器学习的概念，否则不建议继续往下读。
+这是一篇没有高等数学基础的初学者的笔记，除非你仅仅是想了解一下机器学习的概念，否则不建议继续下读去。
 
 本文主要记录在学习 [ML-For-Beginner] 课程中的一些笔记和总结。
 
@@ -122,7 +121,7 @@ publish: false
 - [Linear Regression][linear-regression]
 - [Lasso Regression][lasso]
 - [Tikhonov Regression][tikhonov]
-- https://scikit-learn.org/stable/supervised_learning.html
+- [Scikit Supervised Learning](https://scikit-learn.org/stable/supervised_learning.html)
 - [Supervised Learning][supervised-learning]
 - [Unsupervised Learning][unsupervised-learning]
 
