@@ -1,6 +1,6 @@
 ---
 title: NLP - 自然语言处理
-describe: AI 研究的一个分支
+describe: 机器学习的一个分支
 publish: false
 ---
 
