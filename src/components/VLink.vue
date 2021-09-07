@@ -3,16 +3,17 @@ import { watchEffect, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { scrollToAnchor } from '../utils'
 
-const props = defineProps({
-  href: {
-    type: String,
-    required: true,
-  },
-})
+interface VLinkProps {
+  theme?: 'blue' | 'gray'
+  href: string
+}
+
+const props = defineProps<VLinkProps>()
 
 const data = reactive({
   isRelative: false,
   isAnchor: false,
+  theme: '',
 })
 
 watchEffect(() => {
@@ -29,7 +30,7 @@ function scrollToAnchorEvent(e: MouseEvent) {
 </script>
 
 <template>
-  <span class="link">
+  <span class="link" :class="theme">
     <a v-if="data.isAnchor" :href="props.href" @click="scrollToAnchorEvent">
       <slot />
     </a>
@@ -47,6 +48,11 @@ function scrollToAnchorEvent(e: MouseEvent) {
 
 <style lang="less" scoped>
 .link {
-  @apply text-gray-800 hover:text-blue-500 transition-colors;
+  @apply transition-colors;
+  @apply text-blue-400 hover:text-blue-500;
+
+  &.gray {
+    @apply text-gray-800 hover:text-blue-500;
+  }
 }
 </style>

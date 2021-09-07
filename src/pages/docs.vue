@@ -30,12 +30,7 @@
     <hr class="mt-15" />
     <div class="my-10">
       除非特殊说明，否则，本站文章均使用
-      <v-link
-        class="!text-blue-400 !hover:text-blue-500"
-        href="https://creativecommons.org/licenses/by-nc/4.0/"
-      >
-        CC BY-NC 4.0
-      </v-link>
+      <v-link href="https://creativecommons.org/licenses/by-nc/4.0/"> CC BY-NC 4.0 </v-link>
       许可。
     </div>
     <hr />
@@ -170,7 +165,7 @@ watch(() => scrollPos.y.value, updateTocActive)
   }
 
   a {
-    @apply text-blue-500 hover:text-blue-600;
+    // @apply text-blue-500 hover:text-blue-600;
 
     code {
       color: inherit !important;
