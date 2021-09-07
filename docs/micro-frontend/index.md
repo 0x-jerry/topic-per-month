@@ -75,12 +75,14 @@ export const routes = [
 
 ### micro frontend 框架
 
-框架就有很多啦，我选了三个不同的轮子，简单的捋一捋里面的原理。
+框架就有很多啦，不同的框架，优势也各不相同。我选了三个不同的轮子，简单的捋一捋里面的原理。
 
 - Luigi: https://github.com/SAP/luigi ，利用 iframe 构建的微服务框架
 - EMP: https://github.com/efoxTeam/emp ，使用 webpack5 的 module federation 技术
 - Single-SPA: https://github.com/Single-SPA/Single-SPA ，路由框架
 - qiankun: https://github.com/umijs/qiankun ，建立在 Single-SPA 之上的解决方案
+
+接下来，就看看不同框架之间的优劣。
 
 ## 微前端框架体验
 
@@ -90,7 +92,7 @@ export const routes = [
 
 先看看 [Luigi]，一个利用 `iframe` 构建的后台微服务框架。可看作是一个路由框架，主要用于构建后台配置页面。
 
-通过 [`Luigi.setConfig`](https://docs.luigi-project.io/docs/luigi-core-api?section=luigi-config) API 来配置网站的路由、授权、导航、本地化等。然后 [Luigi] 框架通过 iframe 切换不同的路由。
+通过 [`Luigi.setConfig`](https://docs.luigi-project.io/docs/luigi-core-api?section=luigi-config) API 来配置网站的路由、授权、导航、本地化等。然后 [Luigi] 框架通过 `iframe` 切换不同的路由。
 
 消息机制也是通过 `window.postMessage` 实现，源代码 [source](https://github.com/SAP/luigi/blob/883c3924cf2ae83fce400cbfd7bf84f8c11359d7/client/src/helpers.js#L111-L119)
 
@@ -141,7 +143,7 @@ export const routes = [
 
 其它，如生命周期等，也是类似通过发送消息的方式来实现的。
 
-整体体验下来，不是特别方便，代码有一定的侵入性。由于 iframe 的特性，每次切换，都要请求一下资源，略慢。
+整体体验下来，不是特别方便，代码有一定的侵入性。由于 `iframe` 的特性，每次切换，都要请求一下资源，略慢。
 
 [Luigi] 体验的差不多了，下一个 [EMP]
 
@@ -184,6 +186,14 @@ export const routes = [
 虽然支持 `shadow-dom`，但是建议不要使用 `shadow dom`，因为这会导致一些其它问题，例如第三方库中的 `Modal` 无法使用。
 
 关于通信，[QianKun] 实现了一套基本的状态管理方案 [Global-State](https://qiankun.umijs.org/api#initglobalstatestate)。具体原理，则是通过 全局 实例来处理的。[source: Global-State](https://github.com/umijs/qiankun/blob/HEAD/src/globalState.ts)
+
+### 小结
+
+准确来讲，仅有三个框架，因为 [Single-SPA][single-spa] 主要介绍的是理念。
+
+三个框架，各有千秋，但是 [QianKun][qiankun] 目前看来是相对比较好的方案，代码侵入少，环境隔离好。
+
+具体的代码看了，接下来聊聊 「微前端」 具体解决了哪些问题。
 
 ## 微前端需要解决的问题
 
