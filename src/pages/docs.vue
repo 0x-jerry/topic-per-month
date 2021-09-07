@@ -9,7 +9,10 @@
           {{ article?.title }}
         </small>
         <small class="mx-1 px-3 rounded-full border text-blue-500 border-blue-500">
-          {{ dayjs(article?.lastUpdateDate).format('YYYY-MM-DD HH:mm') }}
+          {{ dayjs(article?.lastUpdateDate).format('YYYY.MM.DD HH:mm') }}
+        </small>
+        <small class="mx-1 px-3 rounded-full border text-blue-500 border-blue-500">
+          {{ data.wordsCount }} 字
         </small>
         <small
           class="mx-1 px-3 rounded-full border text-gray-500 border-gray-500"
@@ -21,7 +24,9 @@
     </div>
   </v-header>
   <div class="pl-10 pr-70 pb-10 mt-20">
-    <router-view />
+    <div ref="mdEl">
+      <router-view />
+    </div>
     <hr class="mt-15" />
     <v-giscus class="py-10" />
   </div>
@@ -30,10 +35,11 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
 import conf from 'virtual:site'
-import { computed, onMounted, onUpdated, watch } from 'vue'
+import { computed, onMounted, onUpdated, reactive, ref, watch } from 'vue'
 import { useWindowScroll } from '@vueuse/core'
 import { scrollToAnchor } from '../utils'
 import dayjs from 'dayjs'
+import { wordsCount } from 'words-count'
 
 const route = useRoute()
 
@@ -45,15 +51,35 @@ const article = computed(() => {
 
 const scrollPos = useWindowScroll()
 
+const mdEl = ref<HTMLDivElement>()
+
+const data = reactive({
+  wordsCount: 0,
+})
+
 onMounted(() => {
   initTocLinks()
+  calcWordsCount()
 })
 
 onUpdated(() => {
   initTocLinks()
+  calcWordsCount()
 })
 
 const router = useRouter()
+
+function calcWordsCount() {
+  if (!mdEl.value) return
+  const els = mdEl.value.querySelectorAll('div.line-numbers-mode')
+
+  let codeCount = 0
+  els.forEach((el) => {
+    codeCount += wordsCount((el as HTMLElement).innerText)
+  })
+
+  data.wordsCount = wordsCount(mdEl.value.innerText) - codeCount
+}
 
 function initTocLinks() {
   const toc = document.querySelector('.table-of-contents')

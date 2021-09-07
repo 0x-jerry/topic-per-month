@@ -39,6 +39,7 @@ specifiers:
   vue: ^3.2.6
   vue-router: ^4.0.11
   windicss: ^3.1.7
+  words-count: ^2.0.2
 
 dependencies:
   '@vueuse/core': registry.nlark.com/@vueuse/core/6.0.0_vue@3.2.6
@@ -47,6 +48,7 @@ dependencies:
   normalize.css: 8.0.1
   vue: registry.nlark.com/vue/3.2.6
   vue-router: registry.nlark.com/vue-router/4.0.11_vue@3.2.6
+  words-count: registry.nlark.com/words-count/2.0.2
 
 devDependencies:
   '@iconify/json': registry.nlark.com/@iconify/json/1.1.395
@@ -3088,6 +3090,12 @@ packages:
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
+
+  registry.nlark.com/words-count/2.0.2:
+    resolution: {integrity: sha1-4O9D1QfbIlghva3YzFB11wSuoYU=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/words-count/download/words-count-2.0.2.tgz}
+    name: words-count
+    version: 2.0.2
+    dev: false
 
   registry.nlark.com/wrappy/1.0.2:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/wrappy/download/wrappy-1.0.2.tgz}
