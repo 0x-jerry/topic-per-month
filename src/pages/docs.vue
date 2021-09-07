@@ -28,7 +28,7 @@
       <router-view />
     </div>
     <hr class="mt-15" />
-    <div class="my-10">
+    <div class="my-10 text-center">
       除非特殊说明，否则，本站文章均使用
       <v-link href="https://creativecommons.org/licenses/by-nc/4.0/"> CC BY-NC 4.0 </v-link>
       许可。
