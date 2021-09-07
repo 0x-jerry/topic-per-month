@@ -49,10 +49,10 @@ function scrollToAnchorEvent(e: MouseEvent) {
 <style lang="less" scoped>
 .link {
   @apply transition-colors;
-  @apply text-blue-400 hover:text-blue-500;
+  @apply text-blue-500 hover:text-blue-600;
 
   &.gray {
-    @apply text-gray-800 hover:text-blue-500;
+    @apply text-gray-800 hover:text-blue-600;
   }
 }
 </style>
