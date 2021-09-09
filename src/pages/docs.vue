@@ -232,6 +232,15 @@ watch(() => scrollPos.y.value, updateTocActive)
     margin: 0 -1.575rem;
     padding: 0 1.575rem;
   }
+
+  img {
+    width: 90%;
+    margin: auto;
+    display: block;
+    border: 1px solid rgba(121, 121, 121, 0.37);
+    border-radius: 3px;
+    padding: 3px;
+  }
 }
 
 .markdown-body .table-of-contents {

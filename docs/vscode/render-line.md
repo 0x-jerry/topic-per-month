@@ -27,7 +27,7 @@ tags: [vscode, js, virtual-list, performance]
 
 打开 VSCode 的调试工具，看看具体的渲染效果，如下图：
 
-![](vscode-render-lines.png)
+![vscode render lines](./vscode-render-lines.png)
 
 可以看出，的确是利用虚拟列表的技术，仅渲染了可视区域的代码。且是利用 `css` 的 `top` 值来确定每一行代码的相对坐标。
 
