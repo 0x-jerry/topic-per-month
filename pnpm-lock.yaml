@@ -4,7 +4,6 @@ specifiers:
   '@iconify/json': ^1.1.398
   '@types/escape-html': ^1.0.1
   '@types/markdown-it': ^12.2.1
-  '@types/markdown-it-container': ^2.0.4
   '@types/markdown-it-emoji': ^2.0.2
   '@types/node': ^16.7.12
   '@types/prismjs': ^1.16.6
@@ -21,7 +20,6 @@ specifiers:
   less: ^4.1.1
   markdown-it: ^12.2.0
   markdown-it-anchor: ^8.3.0
-  markdown-it-container: ^3.0.0
   markdown-it-emoji: ^2.0.0
   markdown-it-highlight-lines: ^1.0.2
   markdown-it-prism: ^2.2.0
@@ -56,7 +54,6 @@ devDependencies:
   '@iconify/json': registry.nlark.com/@iconify/json/1.1.398
   '@types/escape-html': registry.nlark.com/@types/escape-html/1.0.1
   '@types/markdown-it': registry.nlark.com/@types/markdown-it/12.2.1
-  '@types/markdown-it-container': registry.nlark.com/@types/markdown-it-container/2.0.4
   '@types/markdown-it-emoji': registry.nlark.com/@types/markdown-it-emoji/2.0.2
   '@types/node': registry.nlark.com/@types/node/16.7.12
   '@types/prismjs': registry.nlark.com/@types/prismjs/1.16.6
@@ -70,7 +67,6 @@ devDependencies:
   less: registry.nlark.com/less/4.1.1
   markdown-it: registry.nlark.com/markdown-it/12.2.0
   markdown-it-anchor: registry.nlark.com/markdown-it-anchor/8.3.0_markdown-it@12.2.0
-  markdown-it-container: 3.0.0
   markdown-it-emoji: 2.0.0
   markdown-it-highlight-lines: registry.nlark.com/markdown-it-highlight-lines/1.0.2
   markdown-it-prism: registry.nlark.com/markdown-it-prism/2.2.0
@@ -413,10 +409,6 @@ packages:
       semver: 5.7.1
     dev: true
     optional: true
-
-  /markdown-it-container/3.0.0:
-    resolution: {integrity: sha1-HRmwYECgIPmoJ1d7t9v2eqXemls=, tarball: markdown-it-container/download/markdown-it-container-3.0.0.tgz}
-    dev: true
 
   /markdown-it-emoji/2.0.0:
     resolution: {integrity: sha1-MWStTACe/ZRumCdPdWKtYRCJojE=, tarball: markdown-it-emoji/download/markdown-it-emoji-2.0.0.tgz}
@@ -905,14 +897,6 @@ packages:
     resolution: {integrity: sha1-/SzS7bqn6qx+fzwXSLUqGRQ4Rsk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/@types/linkify-it/download/@types/linkify-it-3.0.2.tgz}
     name: '@types/linkify-it'
     version: 3.0.2
-    dev: true
-
-  registry.nlark.com/@types/markdown-it-container/2.0.4:
-    resolution: {integrity: sha1-2hWRm++9zi/i/wpHL2jTEYA0VCQ=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/@types/markdown-it-container/download/@types/markdown-it-container-2.0.4.tgz}
-    name: '@types/markdown-it-container'
-    version: 2.0.4
-    dependencies:
-      '@types/markdown-it': registry.nlark.com/@types/markdown-it/12.2.1
     dev: true
 
   registry.nlark.com/@types/markdown-it-emoji/2.0.2:
@@ -2157,6 +2141,9 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       canvas: ^2.5.0
+    peerDependenciesMeta:
+      canvas:
+        optional: true
     dependencies:
       abab: registry.nlark.com/abab/2.0.5
       acorn: registry.nlark.com/acorn/8.5.0
@@ -3149,6 +3136,9 @@ packages:
       vite: ^2.0.0
       vue: ^3.0.4
       vue-router: ^4.0.1
+    peerDependenciesMeta:
+      critters:
+        optional: true
     dependencies:
       '@vue/compiler-sfc': registry.nlark.com/@vue/compiler-sfc/3.2.9
       '@vue/server-renderer': registry.nlark.com/@vue/server-renderer/3.2.9_vue@3.2.9
@@ -3327,6 +3317,11 @@ packages:
     peerDependencies:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
     dev: true
 
   registry.nlark.com/xml-name-validator/3.0.0:

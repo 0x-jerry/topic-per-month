@@ -5,33 +5,25 @@ visible: false
 
 [[toc]]
 
-::: v-test a=3 b=4
-
-```js {2}
-console.log('hello world')
-console.log('hello world')
-console.log('hello world')
-```
-
-`js`
-
-`console.log('hello')`
-
-;;; template #header="data"
-
-测试 count: {{data.count}} 命名 slot
-
-;;;
-
-xx
-
-:::
+## code
 
 ```js {2}
 console.log('hello world')
 console.log('hello world')console.log('hello world')console.log('hello world')console.log('hello world')console.log('hello world')console.log('hello world')
 console.log('hello world')
 ```
+
+## test code
+
+<VTest a="3" b="4">
+
+hello
+
+```ts {1}
+console.log('hello')
+```
+
+</VTest>
 
 ## test link
 
