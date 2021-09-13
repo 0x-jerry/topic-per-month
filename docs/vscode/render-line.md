@@ -11,7 +11,7 @@ tags: [vscode, js, virtual-list, performance]
 
 ## VSCode 的效果
 
-用 VSCode 随便打开一个 1w+ 的文件，最初加载的时间，会稍微多一点点。但是之后的滚动，却能做到没有丝毫的白屏。无论是滚动还是拖动，效果都非常的丝滑，兼职就像是吃过德芙一样。
+用 VSCode 随便打开一个 1w+ 的文件，最初加载的时间，会稍微多一点点。但是之后的滚动，却能做到没有丝毫的白屏。无论是滚动还是拖动，效果都非常的丝滑，简直就像是吃过德芙一样。
 
 ## 猜想以及尝试
 
@@ -35,7 +35,7 @@ tags: [vscode, js, virtual-list, performance]
 
 带着这个疑问，先试试自己去实现一个虚拟列表，差不多也是依葫芦画瓢，效果不是特别理想。快速滚动的时候也会出现白屏。
 
-粗略分析一下，猜测原因是出在监听 `scroll` 事件上。因为 `scroll` 事件是滚动之后触发的。
+粗略分析一下，猜测原因是出在监听 `scroll` 事件上。因为 `scroll` 事件是在滚动时触发的。
 
 > The **scroll** event fires when the document view has been scrolled. --- [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event)
 
